@@ -1,0 +1,1 @@
+英国地区：适用于Giffgaff、CMLink以及沃达丰的SIM卡
