@@ -1,4 +1,9 @@
 [Rule]
+DOMAIN-SUFFIX,daikuan.360.cn,REJECT
+DOMAIN-SUFFIX,xjietiao.com,REJECT
+DOMAIN-SUFFIX,fqnovelpic.com,REJECT
+DOMAIN-SUFFIX,jinrong.360.cn, REJECT
+DOMAIN-SUFFIX,vas-lf-x.snssdk.com,REJECT
 # ======= 红果短剧自身广告/统计 =======
 DOMAIN-SUFFIX,ad.redfruitdrama.com,REJECT
 DOMAIN-SUFFIX,ads.redfruitdrama.com,REJECT
