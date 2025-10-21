@@ -69,6 +69,3 @@ DOMAIN-SUFFIX,api.redfruitdrama.com,DIRECT
 DOMAIN-SUFFIX,res.redfruitdrama.com,DIRECT
 DOMAIN-SUFFIX,cdn.redfruitdrama.com,DIRECT
 DOMAIN-SUFFIX,play.redfruitdrama.com,DIRECT
-
-# ======= 默认策略 =======
-FINAL,DIRECT
