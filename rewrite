@@ -6,3 +6,4 @@ host, *.xjietiao.com, reject
 host, *.zijieapi.com,reject
 host, *.douyinpic.com,reject
 host, *.ecombdimg.com,reject
+host, *.fqnovelpic.com,reject
