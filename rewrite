@@ -3,3 +3,6 @@ host, *.daikuan.360.cn, reject
 ^https?://([^/]+\.)?daikuan\.360\.cn/ url reject
 host, *.xjietiao.com, reject
 ^https?://([^/]+\.)?xjietiao\.com/ url reject
+host, *.zijieapi.com,reject
+host, *.douyinpic.com,reject
+host, *.ecombdimg.com,reject
