@@ -1,5 +1,43 @@
+[Rule]
 #拦截红果短剧广告
-DOMAIN-SUFFIX,daikuan.360.cn,REJECT
-DOMAIN-SUFFIX,xjietiao.com,REJECT
-DOMAIN-SUFFIX,fqnovelpic.com,REJECT
-DOMAIN-SUFFIX,jinrong.360.cn, REJECT
+
+# ======= 常见广告与统计域名 =======
+DOMAIN-SUFFIX,ad.jiguang.cn,REJECT
+DOMAIN-SUFFIX,ad.toutiao.com,REJECT
+DOMAIN-SUFFIX,adx.baidu.com,REJECT
+DOMAIN-SUFFIX,ad.qq.com,REJECT
+DOMAIN-SUFFIX,log-sdk.gifshow.com,REJECT
+DOMAIN-SUFFIX,track.redfruitdrama.com,REJECT
+DOMAIN-SUFFIX,analytics.redfruitdrama.com,REJECT
+DOMAIN-SUFFIX,adservice.redfruitdrama.com,REJECT
+DOMAIN-SUFFIX,video-ad.redfruitdrama.com,REJECT
+DOMAIN-SUFFIX,monitor.redfruitdrama.com,REJECT
+DOMAIN-SUFFIX,ad.zijieapi.com,REJECT
+DOMAIN-SUFFIX,adstats.tencentmusic.com,REJECT
+DOMAIN-SUFFIX,api-access.pangolin-sdk-toutiao.com,REJECT
+
+# ======= 通用广告 SDK =======
+DOMAIN-SUFFIX,umeng.com,REJECT
+DOMAIN-SUFFIX,bugly.qq.com,REJECT
+DOMAIN-SUFFIX,app-measurement.com,REJECT
+DOMAIN-SUFFIX,googlesyndication.com,REJECT
+DOMAIN-SUFFIX,doubleclick.net,REJECT
+DOMAIN-SUFFIX,byteoversea.com,REJECT
+
+# ======= 跟踪统计 =======
+DOMAIN-SUFFIX,tracking.miui.com,REJECT
+DOMAIN-SUFFIX,report.adview.cn,REJECT
+DOMAIN-SUFFIX,log.snssdk.com,REJECT
+DOMAIN-SUFFIX,track.toutiaoapi.com,REJECT
+DOMAIN-SUFFIX,track.360.cn,REJECT
+
+# ======= 安全保留（请勿屏蔽） =======
+# 以下为登录、播放或资源请求域名
+DOMAIN-SUFFIX,redfruitdrama.com,DIRECT
+DOMAIN-SUFFIX,api.redfruitdrama.com,DIRECT
+DOMAIN-SUFFIX,res.redfruitdrama.com,DIRECT
+DOMAIN-SUFFIX,cdn.redfruitdrama.com,DIRECT
+
+# ======= 默认策略 =======
+FINAL,DIRECT
+
