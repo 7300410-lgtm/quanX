@@ -1,4 +1,5 @@
 [rewrite_local]
+#拦截红果短剧广告
 host, *.daikuan.360.cn, reject
 host, *.xjietiao.com, reject
 host, *.fqnovelpic.com,reject
