@@ -1,0 +1,5 @@
+[rewrite_local]
+host, *.daikuan.com, reject
+^https?://([^/]+\.)?daikuan\.com/ url reject
+host, *.xjietiao.com, reject
+^https?://([^/]+\.)?xjietiao\.com/ url reject
