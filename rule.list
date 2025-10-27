@@ -1,4 +1,5 @@
 #[Rule]
+DOMAIN-SUFFIX,fqnovel.com,REJECT
 DOMAIN-SUFFIX,daikuan.360.cn,REJECT
 DOMAIN-SUFFIX,xjietiao.com,REJECT
 #DOMAIN-SUFFIX,fqnovelpic.com,REJECT
