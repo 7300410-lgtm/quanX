@@ -24,7 +24,7 @@ DOMAIN-SUFFIX,log.redfruitdrama.com,REJECT
 DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
 DOMAIN-SUFFIX,ad.toutiao.com,REJECT
 DOMAIN-SUFFIX,ad.bytedance.com,REJECT
-DOMAIN-SUFFIX,ad.zijieapi.com,REJECT
+DOMAIN-SUFFIX,zijieapi.com,REJECT
 DOMAIN-SUFFIX,api-access.pangolin-sdk-toutiao.com,REJECT
 DOMAIN-SUFFIX,log.snssdk.com,REJECT
 DOMAIN-SUFFIX,track.toutiaoapi.com,REJECT
