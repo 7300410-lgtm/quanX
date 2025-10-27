@@ -1,7 +1,7 @@
 [Rule]
 DOMAIN-SUFFIX,daikuan.360.cn,REJECT
 DOMAIN-SUFFIX,xjietiao.com,REJECT
-DOMAIN-SUFFIX,fqnovelpic.com,REJECT
+#DOMAIN-SUFFIX,fqnovelpic.com,REJECT
 DOMAIN-SUFFIX,jinrong.360.cn, REJECT
 DOMAIN-SUFFIX,vas-lf-x.snssdk.com,REJECT
 DOMAIN-SUFFIX,v.smtcdns.com,REJECT
