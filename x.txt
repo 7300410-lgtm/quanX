@@ -77,5 +77,5 @@ trojan://f701b47f-b12a-4d5d-aa61-26ac910a7a70@104.18.31.230:443?security=tls&sni
 trojan://f701b47f-b12a-4d5d-aa61-26ac910a7a70@104.18.22.108:443?security=tls&sni=g.hkrtu.cn&fp=chrome&type=ws&host=g.hkrtu.cn&path=%2F#%E4%BC%A6%E6%95%A6
 trojan://f701b47f-b12a-4d5d-aa61-26ac910a7a70@172.67.204.66:443?security=tls&sni=g.hkrtu.cn&fp=chrome&type=ws&host=g.hkrtu.cn&path=%2F#%E4%BC%A6%E6%95%A6
 trojan://f701b47f-b12a-4d5d-aa61-26ac910a7a70@172.67.196.207:443?security=tls&sni=g.hkrtu.cn&fp=chrome&type=ws&host=g.hkrtu.cn&path=%2F#%E4%BC%A6%E6%95%A6
-trojan://f701b47f-b12a-4d5d-aa61-26ac910a7a70@104.17.149.200:443?security=tls&sni=g.hkrtu.cn&fp=chrome&type=ws&host=g.hkrtu.cn&path=%2F#%E9%A6%99%E6%B8
-trojan://f701b47f-b12a-4d5d-aa61-26ac910a7a70@162.159.137.44:443?security=tls&sni=g.hkrtu.cn&fp=chrome&type=ws&host=g.hkrtu.cn&path=%2F#%E6%97%A5%E6%9C
+trojan://f701b47f-b12a-4d5d-aa61-26ac910a7a70@104.17.149.200:443?security=tls&sni=g.hkrtu.cn&fp=chrome&type=ws&host=g.hkrtu.cn&path=%2F#%E9%A6%99%E6%B8%AF
+trojan://f701b47f-b12a-4d5d-aa61-26ac910a7a70@162.159.137.44:443?security=tls&sni=g.hkrtu.cn&fp=chrome&type=ws&host=g.hkrtu.cn&path=%2F#%E6%97%A5%E6%9C%AC
