@@ -148,11 +148,11 @@
 104.16.134.131:443#英国-伦敦
 104.16.140.34:443#英国-伦敦
 172.67.129.54:443#英国-伦敦
-shopify.com:443#优选域名shopify.com
-www.udacity.com:443#优选www.udacity.com
+shopify.com:443#Hong Kong-优选域名
+www.udacity.com:443#英国-优选域名
 cdn-b100.xn--b6gac.eu.org:443#优选cdn-b100.xn--b6gac.eu.org
-download.yunzhongzhuan.com:443#优选download.yunzhongzhuan.com
-www.okcupid.com:443#优选www.okcupid.com
-www.wto.org:443#优选www.wto.org
-whatismyipaddress.com:443#优选whatismyipaddress.com
-fbi.gov:443#优选fbi.gov
+download.yunzhongzhuan.com:443#Hong Kong-优选域名
+www.okcupid.com:443#Hong Kong优选域名
+www.wto.org:443#美国-优选域名
+whatismyipaddress.com:443#Hong Kong-优选域名
+fbi.gov:443#英国-优选域名
