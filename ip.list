@@ -13,8 +13,8 @@
 104.17.149.134:443#San Jose
 104.17.132.146:443#San Jose
 104.17.153.69:443#San Jose
-2a06:98c1:3106:b2fd:efae:83f3:90ea:9136:443#Singapore
-2a06:98c1:3107:9f7c:16d2:cad5:c08c:dc39:443#Singapore
+[2a06:98c1:3106:b2fd:efae:83f3:90ea:9136]:443#Singapore
+[2a06:98c1:3107:9f7c:16d2:cad5:c08c:dc39]:443#Singapore
 2a06:98c1:3103:d7d6:b621:ce56:69a9:b0e8:443#Singapore
 2a06:98c1:3101:f6a2:4cb8:d00b:ac10:b340:443#Singapore
 2a06:98c1:3102:4f69:39db:7499:a5f4:36d6:443#Singapore
