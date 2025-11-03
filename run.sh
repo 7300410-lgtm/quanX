@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# 🌀 VLESS over WebSocket (极简无防火墙版)
+# 🌀 VLESS over WebSocket (方案3 + 自动保存 UUID)
 # 作者: afd riu
 # 用法: curl -Ls https://raw.githubusercontent.com/afdriu/vless/main/vless-lite.sh | bash
 # ============================================================
@@ -14,6 +14,7 @@ UUID=${UUID:-$(cat /proc/sys/kernel/random/uuid 2>/dev/null || echo "12345678-12
 WS_PATH=${WS_PATH:-/ws}
 CAMOUFLAGE=${CAMOUFLAGE:-blog}
 PROJECT_DIR=${PROJECT_DIR:-$HOME/vless-server}
+UUID_FILE="${PROJECT_DIR}/UUID.txt"
 
 # ==== 日志函数 ====
 log() { echo -e "\033[1;32m[+] $1\033[0m"; }
@@ -40,6 +41,9 @@ setup_project() {
   mkdir -p "$PROJECT_DIR"
   cd "$PROJECT_DIR"
 
+  # 保存 UUID
+  echo "$UUID" > "$UUID_FILE"
+
   cat > package.json <<EOF
 {
   "name": "vless-lite",
@@ -55,11 +59,12 @@ EOF
 const WebSocket = require('ws');
 const http = require('http');
 const url = require('url');
+const fs = require('fs');
 
 const CONFIG = {
   port: parseInt(process.env.VLESS_PORT) || 14549,
   wsPath: process.env.VLESS_WS_PATH || '/ws',
-  uuid: process.env.VLESS_UUID || '12345678-1234-1234-1234-123456789abc',
+  uuid: process.env.VLESS_UUID || fs.existsSync('./UUID.txt') ? fs.readFileSync('./UUID.txt','utf8').trim() : '12345678-1234-1234-1234-123456789abc',
   camouflage: process.env.VLESS_CAMOUFLAGE || 'blog'
 };
 
@@ -120,7 +125,7 @@ create_runner() {
   cat > start.sh <<EOF
 #!/bin/bash
 export VLESS_PORT=${PORT}
-export VLESS_UUID="${UUID}"
+export VLESS_UUID="\$(cat ${UUID_FILE})"
 export VLESS_WS_PATH="${WS_PATH}"
 export VLESS_CAMOUFLAGE="${CAMOUFLAGE}"
 cd "${PROJECT_DIR}"
@@ -129,22 +134,9 @@ EOF
   chmod +x start.sh
 }
 
-# ==== 主流程 ====
-main() {
-  log "开始部署 VLESS WS 服务..."
-  log "IP: $IP"
-  log "端口: $PORT"
-  log "UUID: $UUID"
-  log "路径: $WS_PATH"
-  log "伪装: $CAMOUFLAGE"
-
-  check_env
-  setup_project
-  install_deps
-  create_runner
-
-  # === 输出连接 ===
-  VLESS_LINK="vless://${UUID}@${IP}:${PORT}?encryption=none&security=none&type=ws&host=${IP}&path=${WS_PATH}#${IP}"
+# ==== 输出信息 ====
+print_link() {
+  VLESS_LINK="vless://$(cat $UUID_FILE)@${IP}:${PORT}?encryption=none&security=none&type=ws&host=${IP}&path=${WS_PATH}#${IP}"
   
   echo
   log "✅ 部署完成！"
@@ -154,6 +146,23 @@ main() {
   log "🌀 你的 VLESS 节点信息如下："
   echo "$VLESS_LINK"
   echo
+  log "📌 UUID 已保存到 $UUID_FILE，可随时查看："
+  echo "cat $UUID_FILE"
+}
+
+# ==== 主流程 ====
+main() {
+  log "开始部署 VLESS WS 服务..."
+  log "IP: $IP"
+  log "端口: $PORT"
+  log "路径: $WS_PATH"
+  log "伪装: $CAMOUFLAGE"
+
+  check_env
+  setup_project
+  install_deps
+  create_runner
+  print_link
 }
 
 main "$@"
