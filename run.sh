@@ -1,8 +1,8 @@
 #!/bin/bash
 # ============================================================
-# 🌀 VLESS + WebSocket + Node伪装 一键部署脚本
+# 🌀 VLESS + WebSocket + Node伪装 一键部署脚本 (兼容无iptables系统)
 # 作者: afd riu
-# 用法: curl -Ls https://raw.githubusercontent.com/afdriu/vless/main/vless-full.sh | bash
+# 用法: curl -Ls https://raw.githubusercontent.com/afdriu/vless/main/vless-full-lite.sh | bash
 # ============================================================
 
 set -e
@@ -19,13 +19,19 @@ SERVER_IP=${SERVER_IP:-85.215.137.163}
 log() { echo -e "\033[1;32m[+] $1\033[0m"; }
 warn() { echo -e "\033[1;33m[!] $1\033[0m"; }
 
-# ==== 防火墙 ====
+# ==== 防火墙（自动检测是否可用）====
 firewall() {
+  log "配置防火墙规则（若不可用将自动跳过）..."
   if command -v ufw &>/dev/null; then
     ufw allow ${PORT}/tcp || true
+    ufw allow 80/tcp || true
   fi
-  iptables -I INPUT -p tcp --dport ${PORT} -j ACCEPT || true
-  iptables -I INPUT -p tcp --dport 80 -j ACCEPT || true
+  if command -v iptables &>/dev/null; then
+    iptables -I INPUT -p tcp --dport ${PORT} -j ACCEPT || true
+    iptables -I INPUT -p tcp --dport 80 -j ACCEPT || true
+  else
+    warn "系统未安装 iptables，跳过端口放行步骤。"
+  fi
 }
 
 # ==== 安装 Node ====
