@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# VLESS over WebSocket 一键部署脚本
-# 使用方法: curl -Ls https://raw.githubusercontent.com/your-repo/deploy-vless.sh | bash -s -- -p 3000 -u your-uuid-here
+# VLESS over WebSocket 一键部署脚本 (端口14533)
+# 使用方法: curl -Ls https://raw.githubusercontent.com/your-repo/deploy-vless.sh | bash -s -- -u your-uuid-here
 
 set -e
 
-# 默认配置
+# 默认配置 - 端口已改为14533
 DEFAULT_PORT=14533
-DEFAULT_UUID=$(cat /proc/sys/kernel/random/uuid 2>/dev/null || echo "0680908b-b236-4b31-9fb3-03d1950a9d7e")
+DEFAULT_UUID=$(cat /proc/sys/kernel/random/uuid 2>/dev/null || echo "12345678-1234-1234-1234-123456789abc")
 DEFAULT_WS_PATH="/ws"
 DEFAULT_CAMOUFLAGE="blog"
 PROJECT_DIR="$HOME/vless-server"
@@ -34,7 +34,7 @@ log_error() {
 
 # 显示帮助信息
 show_help() {
-    echo "VLESS over WebSocket 一键部署脚本"
+    echo "VLESS over WebSocket 一键部署脚本 (端口: $DEFAULT_PORT)"
     echo ""
     echo "用法: $0 [选项]"
     echo ""
@@ -48,8 +48,8 @@ show_help() {
     echo "  -h, --help             显示此帮助信息"
     echo ""
     echo "示例:"
-    echo "  $0 -p 8080 -u 12345678-1234-1234-1234-123456789abc -c blog"
-    echo "  curl -Ls https://raw.githubusercontent.com/your-repo/deploy-vless.sh | bash -s -- -p 3000"
+    echo "  $0 -u 12345678-1234-1234-1234-123456789abc -c blog"
+    echo "  curl -Ls https://raw.githubusercontent.com/your-repo/deploy-vless.sh | bash -s -- -p 14533"
 }
 
 # 解析命令行参数
@@ -146,7 +146,7 @@ create_project() {
 }
 EOF
 
-    # 创建主应用文件
+    # 创建主应用文件 (端口已更新为14533)
     cat > app.js << 'EOF'
 #!/usr/bin/env node
 const WebSocket = require('ws');
@@ -154,7 +154,7 @@ const http = require('http');
 const url = require('url');
 
 const CONFIG = {
-  port: parseInt(process.env.VLESS_PORT) || 3000,
+  port: parseInt(process.env.VLESS_PORT) || 14533,
   wsPath: process.env.VLESS_WS_PATH || '/ws',
   uuid: process.env.VLESS_UUID || '12345678-1234-1234-1234-123456789abc',
   camouflage: process.env.VLESS_CAMOUFLAGE || 'blog'
@@ -420,7 +420,7 @@ main() {
     echo -e "${BLUE}"
     echo "╔══════════════════════════════════════╗"
     echo "║      VLESS over WebSocket 部署脚本    ║"
-    echo "║         Container Ready & No Root    ║"
+    echo "║         端口: 14533 & No Root        ║"
     echo "╚══════════════════════════════════════╝"
     echo -e "${NC}"
     
