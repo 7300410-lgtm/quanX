@@ -6,8 +6,8 @@
 set -e
 
 # 默认配置
-DEFAULT_PORT=3000
-DEFAULT_UUID=$(cat /proc/sys/kernel/random/uuid 2>/dev/null || echo "12345678-1234-1234-1234-123456789abc")
+DEFAULT_PORT=14533
+DEFAULT_UUID=$(cat /proc/sys/kernel/random/uuid 2>/dev/null || echo "0680908b-b236-4b31-9fb3-03d1950a9d7e")
 DEFAULT_WS_PATH="/ws"
 DEFAULT_CAMOUFLAGE="blog"
 PROJECT_DIR="$HOME/vless-server"
