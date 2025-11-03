@@ -13,18 +13,24 @@ UUID=${UUID:-$(cat /proc/sys/kernel/random/uuid 2>/dev/null || echo "12345678-12
 WS_PATH=${WS_PATH:-/ws}
 CAMOUFLAGE=${CAMOUFLAGE:-blog}
 PROJECT_DIR=${PROJECT_DIR:-$HOME/vless-server}
+SERVER_IP=${SERVER_IP:-85.215.137.163}
 
-# ==== 简单日志 ====
+# ==== 日志输出 ====
 log() { echo -e "\033[1;32m[+] $1\033[0m"; }
+warn() { echo -e "\033[1;33m[!] $1\033[0m"; }
 
-# ==== 环境检查 ====
+# ==== 检查环境 ====
 check_env() {
   if ! command -v node &>/dev/null; then
-    log "检测到未安装 Node.js，正在自动安装..."
+    warn "未检测到 Node.js，正在安装最新稳定版..."
     if command -v apt &>/dev/null; then
-      apt update -y && apt install -y nodejs npm
+      apt update -y && apt install -y curl
+      curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+      apt install -y nodejs
     elif command -v yum &>/dev/null; then
-      yum install -y nodejs npm
+      yum install -y curl
+      curl -fsSL https://rpm.nodesource.com/setup_20.x | bash -
+      yum install -y nodejs
     else
       echo "无法自动安装 Node.js，请手动安装后重试。"
       exit 1
@@ -96,12 +102,12 @@ const wss = new WebSocket.Server({
 });
 
 wss.on('connection', (ws, req) => {
-  console.log('New connection:', req.socket.remoteAddress);
-  ws.on('message', msg => ws.send(msg));
+  console.log('New WS connection:', req.socket.remoteAddress);
+  ws.on('message', msg => ws.send(msg)); // echo back
 });
 
 server.listen(CONFIG.port, '0.0.0.0', () =>
-  console.log(`✅ VLESS WS running on port ${CONFIG.port} path=${CONFIG.wsPath}`)
+  console.log(`✅ VLESS WS running on port ${CONFIG.port}, path=${CONFIG.wsPath}`)
 );
 EOF
 }
@@ -120,11 +126,24 @@ export VLESS_PORT=${PORT}
 export VLESS_UUID="${UUID}"
 export VLESS_WS_PATH="${WS_PATH}"
 export VLESS_CAMOUFLAGE="${CAMOUFLAGE}"
-
 cd "${PROJECT_DIR}"
 npm start
 EOF
   chmod +x start.sh
+}
+
+# ==== 输出连接信息 ====
+print_link() {
+  local vless_link="vless://${UUID}@${SERVER_IP}:${PORT}?encryption=none&type=ws&path=${WS_PATH}&host=${SERVER_IP}&security=none#VLESS_WS_${SERVER_IP}"
+  echo
+  log "✅ 部署完成！"
+  echo "-------------------------------------------"
+  echo -e " VLESS 连接地址：\n\033[1;34m${vless_link}\033[0m"
+  echo "-------------------------------------------"
+  echo
+  echo "启动方式："
+  echo "cd ${PROJECT_DIR} && ./start.sh"
+  echo
 }
 
 # ==== 主流程 ====
@@ -134,16 +153,13 @@ main() {
   log "UUID: $UUID"
   log "路径: $WS_PATH"
   log "伪装: $CAMOUFLAGE"
+  log "服务器: $SERVER_IP"
+
   check_env
   setup_project
   install_deps
   create_runner
-  log "✅ 部署完成！运行方式如下："
-  echo
-  echo "cd $PROJECT_DIR && ./start.sh"
-  echo
-  log "可选参数 (运行前设置环境变量)："
-  echo "PORT=8443 UUID=xxxx WS_PATH=/api CAMOUFLAGE=news bash vless-lite.sh"
+  print_link
 }
 
 main "$@"
