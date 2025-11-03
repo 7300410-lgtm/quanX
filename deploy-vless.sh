@@ -1,17 +1,24 @@
 #!/bin/bash
 
-# 优化版 VLESS 部署脚本
+# 非 Root 权限 VLESS 部署脚本
 # 端口: 14549
-# 作者: 基于社区最佳实践优化
+# 无需 root 权限，使用用户空间安装
 
 set -e
 
 # 配置变量
-CONFIG_FILE="/etc/v2ray/config.json"
-SERVICE_NAME="v2ray"
+USER_HOME="$HOME"
+V2RAY_DIR="$USER_HOME/v2ray"
+CONFIG_FILE="$V2RAY_DIR/config.json"
+BIN_DIR="$V2RAY_DIR/bin"
+LOG_DIR="$V2RAY_DIR/logs"
 PORT="14549"
-UUID=$(cat /proc/sys/kernel/random/uuid)
-WEBSITE_URL="https://github.com/v2fly/v2ray-core"
+UUID=$(cat /proc/sys/kernel/random/uuid 2>/dev/null || uuidgen 2>/dev/null || echo "$(date +%s)-$RANDOM")
+
+# 如果无法生成标准 UUID，使用替代方法
+if [ "$UUID" = "" ]; then
+    UUID="$(date +%s%N)-$RANDOM-$RANDOM-$RANDOM"
+fi
 
 # 颜色输出
 RED='\033[0;31m'
@@ -23,63 +30,61 @@ info() { echo -e "${GREEN}[INFO]${NC} $1"; }
 warn() { echo -e "${YELLOW}[WARN]${NC} $1"; }
 error() { echo -e "${RED}[ERROR]${NC} $1"; }
 
-# 检查root权限
-check_root() {
-    if [[ $EUID -ne 0 ]]; then
-        error "需要root权限运行此脚本"
-        exit 1
-    fi
+# 检查系统架构
+get_architecture() {
+    ARCH=$(uname -m)
+    case $ARCH in
+        x86_64) ARCH="64" ;;
+        aarch64) ARCH="arm64-v8a" ;;
+        armv7l) ARCH="arm32-v7a" ;;
+        *) error "不支持的架构: $ARCH"; exit 1 ;;
+    esac
+    info "系统架构: $ARCH"
 }
 
-# 检查系统
-check_system() {
-    if [[ -f /etc/redhat-release ]]; then
-        SYSTEM="centos"
-    elif grep -q "Ubuntu" /etc/issue; then
-        SYSTEM="ubuntu"
-    elif grep -q "Debian" /etc/issue; then
-        SYSTEM="debian"
-    else
-        error "不支持的操作系统"
-        exit 1
-    fi
-    info "检测到系统: $SYSTEM"
+# 创建目录结构
+create_directories() {
+    info "创建目录结构..."
+    mkdir -p "$BIN_DIR" "$LOG_DIR"
 }
 
-# 安装依赖
-install_dependencies() {
-    info "安装系统依赖..."
-    if [[ $SYSTEM == "centos" ]]; then
-        yum update -y
-        yum install -y curl unzip wget
-    else
-        apt update -y
-        apt install -y curl unzip wget
-    fi
-}
-
-# 安装V2Ray
-install_v2ray() {
-    info "安装 V2Ray..."
-    bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
+# 下载 V2Ray
+download_v2ray() {
+    info "下载 V2Ray..."
+    local V2RAY_URL="https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-$ARCH.zip"
     
-    if ! systemctl is-active --quiet $SERVICE_NAME; then
-        error "V2Ray 安装失败"
+    if command -v curl >/dev/null 2>&1; then
+        curl -L -o "$V2RAY_DIR/v2ray.zip" "$V2RAY_URL"
+    elif command -v wget >/dev/null 2>&1; then
+        wget -O "$V2RAY_DIR/v2ray.zip" "$V2RAY_URL"
+    else
+        error "需要 curl 或 wget 来下载文件"
         exit 1
     fi
-    info "V2Ray 安装成功"
+    
+    if [ ! -f "$V2RAY_DIR/v2ray.zip" ]; then
+        error "下载 V2Ray 失败"
+        exit 1
+    fi
+    
+    info "解压 V2Ray..."
+    unzip -q "$V2RAY_DIR/v2ray.zip" -d "$V2RAY_DIR/"
+    mv "$V2RAY_DIR/v2ray" "$BIN_DIR/"
+    mv "$V2RAY_DIR/v2ctl" "$BIN_DIR/"
+    chmod +x "$BIN_DIR/v2ray" "$BIN_DIR/v2ctl"
+    rm -f "$V2RAY_DIR/v2ray.zip" "$V2RAY_DIR/"*.json
 }
 
 # 生成配置文件
 generate_config() {
     info "生成 V2Ray 配置文件..."
     
-    cat > $CONFIG_FILE << EOF
+    cat > "$CONFIG_FILE" << EOF
 {
   "log": {
     "loglevel": "warning",
-    "access": "/var/log/v2ray/access.log",
-    "error": "/var/log/v2ray/error.log"
+    "access": "$LOG_DIR/access.log",
+    "error": "$LOG_DIR/error.log"
   },
   "inbounds": [{
     "port": $PORT,
@@ -111,37 +116,34 @@ EOF
     info "配置文件已生成: $CONFIG_FILE"
 }
 
-# 配置防火墙
-setup_firewall() {
-    info "配置防火墙..."
-    if command -v ufw >/dev/null 2>&1; then
-        ufw allow $PORT/tcp
-        ufw reload
-        info "UFW 防火墙已配置"
-    elif command -v firewall-cmd >/dev/null 2>&1; then
-        firewall-cmd --permanent --add-port=$PORT/tcp
-        firewall-cmd --reload
-        info "FirewallD 已配置"
-    elif command -v iptables >/dev/null 2>&1; then
-        iptables -I INPUT -p tcp --dport $PORT -j ACCEPT
-        info "iptables 规则已添加"
-    else
-        warn "未找到支持的防火墙工具，请手动开放端口 $PORT"
-    fi
+# 生成启动脚本
+generate_start_script() {
+    info "生成启动脚本..."
+    
+    cat > "$V2RAY_DIR/start.sh" << 'EOF'
+#!/bin/bash
+cd "$(dirname "$0")"
+./bin/v2ray run -config config.json
+EOF
+
+    cat > "$V2RAY_DIR/stop.sh" << 'EOF'
+#!/bin/bash
+pkill -f "v2ray run -config config.json"
+EOF
+
+    chmod +x "$V2RAY_DIR/start.sh" "$V2RAY_DIR/stop.sh"
 }
 
 # 获取公网IP
 get_public_ip() {
     info "获取服务器公网IP..."
-    PUBLIC_IP=$(curl -s -4 ip.sb)
-    if [[ -z "$PUBLIC_IP" ]]; then
-        PUBLIC_IP=$(curl -s -4 ifconfig.me)
+    PUBLIC_IP=$(curl -s -4 ip.sb 2>/dev/null || curl -s -4 ifconfig.me 2>/dev/null || echo "YOUR_SERVER_IP")
+    
+    if [ "$PUBLIC_IP" = "YOUR_SERVER_IP" ]; then
+        warn "无法自动获取公网IP，请手动替换连接中的 YOUR_SERVER_IP"
+    else
+        info "服务器公网IP: $PUBLIC_IP"
     fi
-    if [[ -z "$PUBLIC_IP" ]]; then
-        error "无法获取公网IP，请手动检查"
-        PUBLIC_IP="你的服务器IP"
-    fi
-    info "服务器公网IP: $PUBLIC_IP"
 }
 
 # 生成客户端连接信息
@@ -174,61 +176,109 @@ Clash 配置:
 
 ===============================================================================
 EOF
+
+    # 保存配置到文件
+    cat > "$V2RAY_DIR/client-info.txt" << EOF
+服务器地址: $PUBLIC_IP
+端口: $PORT
+UUID: $UUID
+传输协议: ws
+路径: /v2ray
+
+VLESS 链接:
+vless://$UUID@$PUBLIC_IP:$PORT?type=ws&security=none&path=%2Fv2ray#$PUBLIC_IP
+EOF
+    
+    info "客户端配置已保存到: $V2RAY_DIR/client-info.txt"
+}
+
+# 测试端口是否可用
+test_port() {
+    info "测试端口 $PORT 是否可用..."
+    
+    if command -v nc >/dev/null 2>&1; then
+        if nc -z localhost $PORT 2>/dev/null; then
+            error "端口 $PORT 已被占用，请更换端口或关闭占用程序"
+            exit 1
+        else
+            info "端口 $PORT 可用"
+        fi
+    else
+        warn "无法检查端口占用情况 (netcat 未安装)，请确保端口 $PORT 未被占用"
+    fi
 }
 
 # 启动服务
 start_service() {
     info "启动 V2Ray 服务..."
-    systemctl enable $SERVICE_NAME
-    systemctl restart $SERVICE_NAME
     
-    if systemctl is-active --quiet $SERVICE_NAME; then
-        info "V2Ray 服务启动成功"
+    # 检查是否已在运行
+    if pgrep -f "v2ray run -config config.json" >/dev/null; then
+        warn "V2Ray 服务已在运行，正在停止..."
+        pkill -f "v2ray run -config config.json"
+        sleep 2
+    fi
+    
+    # 启动服务
+    cd "$V2RAY_DIR"
+    nohup ./bin/v2ray run -config config.json > "$LOG_DIR/run.log" 2>&1 &
+    local PID=$!
+    
+    sleep 3
+    
+    if ps -p $PID >/dev/null 2>&1; then
+        info "V2Ray 服务启动成功 (PID: $PID)"
         
         # 检查端口监听
-        if ss -tuln | grep -q ":$PORT "; then
+        if command -v ss >/dev/null 2>&1 && ss -tuln | grep -q ":$PORT "; then
             info "端口 $PORT 监听正常"
         else
-            warn "端口 $PORT 未监听，请检查服务状态"
+            warn "端口 $PORT 可能未正常监听，请检查日志: $LOG_DIR/run.log"
         fi
     else
-        error "V2Ray 服务启动失败"
-        journalctl -u $SERVICE_NAME -n 10 --no-pager
+        error "V2Ray 服务启动失败，请检查日志: $LOG_DIR/run.log"
         exit 1
     fi
 }
 
-# 显示服务状态
-show_status() {
-    info "服务状态检查..."
-    systemctl status $SERVICE_NAME --no-pager -l
-    
-    echo
-    info "最近日志:"
-    journalctl -u $SERVICE_NAME -n 5 --no-pager
+# 显示使用说明
+show_usage() {
+    cat << EOF
+
+使用说明:
+启动服务: $V2RAY_DIR/start.sh
+停止服务: $V2RAY_DIR/stop.sh
+查看日志: tail -f $LOG_DIR/run.log
+配置文件: $CONFIG_FILE
+客户端配置: $V2RAY_DIR/client-info.txt
+
+管理命令:
+启动: cd $V2RAY_DIR && ./start.sh
+停止: cd $V2RAY_DIR && ./stop.sh
+重启: 先运行 stop.sh 再运行 start.sh
+
+EOF
 }
 
 # 主函数
 main() {
     clear
     echo "=========================================="
-    echo "    VLESS 服务部署脚本 (端口: $PORT)     "
+    echo "   非 Root VLESS 部署脚本 (端口: $PORT)   "
     echo "=========================================="
     
-    check_root
-    check_system
-    install_dependencies
-    install_v2ray
+    get_architecture
+    test_port
+    create_directories
+    download_v2ray
     generate_config
-    setup_firewall
-    start_service
+    generate_start_script
     get_public_ip
+    start_service
     generate_client_info
-    show_status
+    show_usage
     
-    info "部署完成！"
-    info "配置文件位置: $CONFIG_FILE"
-    info "管理命令: systemctl [start|stop|restart|status] $SERVICE_NAME"
+    info "部署完成！所有文件安装在: $V2RAY_DIR"
 }
 
 # 执行主函数
