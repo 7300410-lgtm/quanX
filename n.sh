@@ -1,52 +1,67 @@
 #!/bin/bash
 # =========================================
-# VLESS over WS/TLS 自动部署脚本（免 root）
-# 固定 SNI：www.bing.com
+# Xray VLESS over WS+TLS 自动部署脚本（免 root）
 # 固定端口：14549
 # 固定 UUID：2c1a7a59-6241-4114-a26c-1da2e73444dc
+# SNI：www.bing.com
 # =========================================
 set -euo pipefail
 export LC_ALL=C
 IFS=$'\n\t'
 
 MASQ_DOMAIN="www.bing.com"
-SERVER_JSON="vless-server.json"
-LINK_TXT="vless_link.txt"
-VLESS_BIN="./v2ray"   # 假设使用 v2ray-core
 VLESS_PORT=14549
 VLESS_UUID="2c1a7a59-6241-4114-a26c-1da2e73444dc"
+VLESS_PATH="/vless"
+SERVER_JSON="vless-server.json"
+LINK_TXT="vless_link.txt"
+XRAY_BIN="./xray"
+CERT_PEM="vless-cert.pem"
+KEY_PEM="vless-key.pem"
 
-# ========== 生成证书 ==========
+# ========== 生成自签证书 ==========
 generate_cert() {
-  if [[ -f "vless-cert.pem" && -f "vless-key.pem" ]]; then
+  if [[ -f "$CERT_PEM" && -f "$KEY_PEM" ]]; then
     echo "🔐 Certificate exists, skipping."
     return
   fi
   echo "🔐 Generating self-signed certificate for ${MASQ_DOMAIN}..."
   openssl req -x509 -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 \
-    -keyout "vless-key.pem" -out "vless-cert.pem" -subj "/CN=${MASQ_DOMAIN}" -days 365 -nodes >/dev/null 2>&1
-  chmod 600 "vless-key.pem"
-  chmod 644 "vless-cert.pem"
+    -keyout "$KEY_PEM" -out "$CERT_PEM" -subj "/CN=${MASQ_DOMAIN}" -days 365 -nodes >/dev/null 2>&1
+  chmod 600 "$KEY_PEM"
+  chmod 644 "$CERT_PEM"
 }
 
-# ========== 下载 v2ray-core ==========
-check_vless_server() {
-  if [[ -x "$VLESS_BIN" ]]; then
-    echo "✅ v2ray-core already exists."
+# ========== 下载 Xray 核心 ==========
+check_xray() {
+  if [[ -x "$XRAY_BIN" ]]; then
+    echo "✅ Xray already exists."
     return
   fi
-  echo "📥 Downloading v2ray-core..."
-  curl -L -o "v2ray-linux-64.zip" "https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip"
-  unzip -o "v2ray-linux-64.zip" -d ./v2ray_tmp
-  mv ./v2ray_tmp/v2ray "$VLESS_BIN"
-  chmod +x "$VLESS_BIN"
-  rm -rf ./v2ray_tmp v2ray-linux-64.zip
+  echo "📥 Downloading Xray core..."
+  ARCH=$(uname -m)
+  if [[ "$ARCH" == "x86_64" ]]; then
+    XRAY_URL="https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip"
+  elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
+    XRAY_URL="https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-arm64-v8a.zip"
+  else
+    echo "❌ Unsupported architecture: $ARCH"
+    exit 1
+  fi
+  curl -L -o xray.zip "$XRAY_URL"
+  unzip -o xray.zip -d xray_tmp
+  mv xray_tmp/xray "$XRAY_BIN"
+  chmod +x "$XRAY_BIN"
+  rm -rf xray_tmp xray.zip
 }
 
-# ========== 生成配置 ==========
+# ========== 生成 Xray 配置 ==========
 generate_config() {
 cat > "$SERVER_JSON" <<EOF
 {
+  "log": {
+    "loglevel": "warning"
+  },
   "inbounds": [{
     "port": ${VLESS_PORT},
     "protocol": "vless",
@@ -63,7 +78,7 @@ cat > "$SERVER_JSON" <<EOF
     "streamSettings": {
       "network": "ws",
       "wsSettings": {
-        "path": "/vless",
+        "path": "${VLESS_PATH}",
         "headers": {
           "Host": "${MASQ_DOMAIN}"
         }
@@ -72,8 +87,8 @@ cat > "$SERVER_JSON" <<EOF
       "tlsSettings": {
         "certificates": [
           {
-            "certificateFile": "vless-cert.pem",
-            "keyFile": "vless-key.pem"
+            "certificateFile": "${CERT_PEM}",
+            "keyFile": "${KEY_PEM}"
           }
         ]
       }
@@ -86,40 +101,35 @@ cat > "$SERVER_JSON" <<EOF
 EOF
 }
 
+# ========== 获取公网 IP ==========
+get_server_ip() {
+  curl -s --connect-timeout 3 https://api64.ipify.org || echo "127.0.0.1"
+}
+
 # ========== 生成 VLESS 链接 ==========
 generate_link() {
   local ip="$1"
   cat > "$LINK_TXT" <<EOF
-vless://${VLESS_UUID}@${ip}:${VLESS_PORT}?encryption=none&security=tls&type=ws&host=${MASQ_DOMAIN}&path=/vless#VLESS-${ip}
+vless://${VLESS_UUID}@${ip}:${VLESS_PORT}?encryption=none&security=tls&type=ws&host=${MASQ_DOMAIN}&path=${VLESS_PATH}#VLESS-${ip}
 EOF
   echo "🔗 VLESS link generated successfully:"
   cat "$LINK_TXT"
 }
 
-# ========== 获取公网IP ==========
-get_server_ip() {
-  curl -s --connect-timeout 3 https://api64.ipify.org || echo "127.0.0.1"
-}
-
-# ========== 守护进程 ==========
-run_background_loop() {
-  echo "🚀 Starting VLESS server..."
-  while true; do
-    "$VLESS_BIN" -config "$SERVER_JSON" >/dev/null 2>&1 || true
-    echo "⚠️ VLESS crashed. Restarting in 5s..."
-    sleep 5
-  done
+# ========== 启动 Xray ==========
+run_server() {
+  echo "🚀 Starting Xray VLESS server..."
+  "$XRAY_BIN" -config "$SERVER_JSON"
 }
 
 # ========== 主流程 ==========
 main() {
   generate_cert
-  check_vless_server
+  check_xray
   generate_config
-
-  ip="$(get_server_ip)"
+  ip=$(get_server_ip)
   generate_link "$ip"
-  run_background_loop
+  run_server
 }
 
 main
