@@ -1,285 +1,531 @@
 #!/bin/bash
 
-# 非 Root 权限 VLESS 部署脚本
-# 端口: 14549
-# 无需 root 权限，使用用户空间安装
+# VLESS over WebSocket 一键部署脚本 (端口14549)
+# 使用方法: curl -Ls https://raw.githubusercontent.com/your-repo/deploy-vless.sh | bash
 
 set -e
 
-# 配置变量
-USER_HOME="$HOME"
-V2RAY_DIR="$USER_HOME/v2ray"
-CONFIG_FILE="$V2RAY_DIR/config.json"
-BIN_DIR="$V2RAY_DIR/bin"
-LOG_DIR="$V2RAY_DIR/logs"
-PORT="14549"
-UUID=$(cat /proc/sys/kernel/random/uuid 2>/dev/null || uuidgen 2>/dev/null || echo "$(date +%s)-$RANDOM")
+# 配置参数
+DEFAULT_PORT=14549
+DEFAULT_UUID=$(cat /proc/sys/kernel/random/uuid 2>/dev/null || echo "12345678-1234-1234-1234-123456789abc")
+DEFAULT_WS_PATH="/ws"
+DEFAULT_CAMOUFLAGE="blog"
+PROJECT_DIR="$HOME/vless-server"
 
-# 如果无法生成标准 UUID，使用替代方法
-if [ "$UUID" = "" ]; then
-    UUID="$(date +%s%N)-$RANDOM-$RANDOM-$RANDOM"
-fi
-
-# 颜色输出
+# 颜色定义
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
 NC='\033[0m'
 
-info() { echo -e "${GREEN}[INFO]${NC} $1"; }
-warn() { echo -e "${YELLOW}[WARN]${NC} $1"; }
-error() { echo -e "${RED}[ERROR]${NC} $1"; }
-
-# 检查系统架构
-get_architecture() {
-    ARCH=$(uname -m)
-    case $ARCH in
-        x86_64) ARCH="64" ;;
-        aarch64) ARCH="arm64-v8a" ;;
-        armv7l) ARCH="arm32-v7a" ;;
-        *) error "不支持的架构: $ARCH"; exit 1 ;;
-    esac
-    info "系统架构: $ARCH"
+# 日志函数
+log_info() {
+    echo -e "${GREEN}[INFO]${NC} $1"
 }
 
-# 创建目录结构
-create_directories() {
-    info "创建目录结构..."
-    mkdir -p "$BIN_DIR" "$LOG_DIR"
+log_warn() {
+    echo -e "${YELLOW}[WARN]${NC} $1"
 }
 
-# 下载 V2Ray
-download_v2ray() {
-    info "下载 V2Ray..."
-    local V2RAY_URL="https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-$ARCH.zip"
+log_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
+
+# 显示帮助信息
+show_help() {
+    echo "VLESS over WebSocket 一键部署脚本 (端口: $DEFAULT_PORT)"
+    echo ""
+    echo "用法: $0 [选项]"
+    echo ""
+    echo "选项:"
+    echo "  -p, --port PORT        设置服务端口 (默认: $DEFAULT_PORT)"
+    echo "  -u, --uuid UUID        设置VLESS UUID (默认: 自动生成)"
+    echo "  -w, --ws-path PATH     设置WebSocket路径 (默认: $DEFAULT_WS_PATH)"
+    echo "  -c, --camouflage MODE  设置伪装模式 (默认: $DEFAULT_CAMOUFLAGE)"
+    echo "                         可用模式: none, blog, news, api, company"
+    echo "  -d, --dir DIR          设置项目目录 (默认: $PROJECT_DIR)"
+    echo "  -h, --help             显示此帮助信息"
+    echo ""
+    echo "示例:"
+    echo "  $0 -u 12345678-1234-1234-1234-123456789abc -c blog"
+    echo "  curl -Ls https://raw.githubusercontent.com/your-repo/deploy-vless.sh | bash"
+}
+
+# 解析命令行参数
+parse_args() {
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -p|--port)
+                PORT="$2"
+                shift 2
+                ;;
+            -u|--uuid)
+                UUID="$2"
+                shift 2
+                ;;
+            -w|--ws-path)
+                WS_PATH="$2"
+                shift 2
+                ;;
+            -c|--camouflage)
+                CAMOUFLAGE="$2"
+                shift 2
+                ;;
+            -d|--dir)
+                PROJECT_DIR="$2"
+                shift 2
+                ;;
+            -h|--help)
+                show_help
+                exit 0
+                ;;
+            *)
+                log_error "未知选项: $1"
+                show_help
+                exit 1
+                ;;
+        esac
+    done
+}
+
+# 检查系统依赖
+check_dependencies() {
+    log_info "检查系统依赖..."
     
-    if command -v curl >/dev/null 2>&1; then
-        curl -L -o "$V2RAY_DIR/v2ray.zip" "$V2RAY_URL"
-    elif command -v wget >/dev/null 2>&1; then
-        wget -O "$V2RAY_DIR/v2ray.zip" "$V2RAY_URL"
+    if ! command -v node &> /dev/null; then
+        log_error "Node.js 未安装，请先安装 Node.js 18+"
+        log_info "安装示例:"
+        log_info "Ubuntu/Debian: curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install -y nodejs"
+        log_info "CentOS/RHEL: curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash - && sudo yum install -y nodejs"
+        exit 1
+    fi
+    
+    if ! command -v npm &> /dev/null; then
+        log_error "npm 未安装"
+        exit 1
+    fi
+    
+    NODE_VERSION=$(node -v | cut -d'v' -f2 | cut -d'.' -f1)
+    if [ "$NODE_VERSION" -lt 16 ]; then
+        log_error "Node.js 版本过低，需要 16.0.0 或更高版本，当前版本: $(node -v)"
+        exit 1
+    fi
+    
+    log_info "✓ Node.js 版本: $(node -v)"
+    log_info "✓ npm 版本: $(npm -v)"
+}
+
+# 检查和管理防火墙
+manage_firewall() {
+    local port=$1
+    log_info "检查防火墙状态..."
+    
+    # 检查是否需要sudo权限
+    if command -v sudo &> /dev/null && [ "$EUID" -ne 0 ]; then
+        local SUDO_CMD="sudo"
     else
-        error "需要 curl 或 wget 来下载文件"
-        exit 1
+        local SUDO_CMD=""
     fi
     
-    if [ ! -f "$V2RAY_DIR/v2ray.zip" ]; then
-        error "下载 V2Ray 失败"
-        exit 1
+    # 检测防火墙类型并管理端口
+    if command -v ufw &> /dev/null && $SUDO_CMD ufw status | grep -q "Status: active"; then
+        log_info "检测到 ufw 防火墙正在运行"
+        if $SUDO_CMD ufw status | grep -q "$port"; then
+            log_info "✓ 端口 $port 已在 ufw 防火墙中开放"
+        else
+            log_warn "正在为 ufw 防火墙开放端口 $port"
+            if $SUDO_CMD ufw allow $port/tcp; then
+                log_info "✓ 端口 $port 已在 ufw 防火墙中成功开放"
+            else
+                log_error "无法开放 ufw 防火墙端口 $port，请手动执行: sudo ufw allow $port/tcp"
+            fi
+        fi
+    elif command -v firewall-cmd &> /dev/null && $SUDO_CMD firewall-cmd --state 2>/dev/null | grep -q "running"; then
+        log_info "检测到 firewalld 防火墙正在运行"
+        if $SUDO_CMD firewall-cmd --list-ports | grep -q "$port/tcp"; then
+            log_info "✓ 端口 $port 已在 firewalld 防火墙中开放"
+        else
+            log_warn "正在为 firewalld 防火墙开放端口 $port"
+            if $SUDO_CMD firewall-cmd --permanent --add-port=$port/tcp && $SUDO_CMD firewall-cmd --reload; then
+                log_info "✓ 端口 $port 已在 firewalld 防火墙中成功开放"
+            else
+                log_error "无法开放 firewalld 防火墙端口 $port，请手动执行: sudo firewall-cmd --permanent --add-port=$port/tcp && sudo firewall-cmd --reload"
+            fi
+        fi
+    elif command -v iptables &> /dev/null && [ "$EUID" -eq 0 ]; then
+        log_info "检测到 iptables 防火墙"
+        if iptables -L INPUT -n | grep -q "dpt:$port"; then
+            log_info "✓ 端口 $port 已在 iptables 防火墙中开放"
+        else
+            log_warn "正在为 iptables 防火墙开放端口 $port"
+            if iptables -A INPUT -p tcp --dport $port -j ACCEPT; then
+                log_info "✓ 端口 $port 已在 iptables 防火墙中成功开放"
+                # 保存iptables规则（如果支持）
+                if command -v iptables-save &> /dev/null; then
+                    iptables-save > /etc/iptables/rules.v4 2>/dev/null || true
+                fi
+            else
+                log_error "无法开放 iptables 防火墙端口 $port"
+            fi
+        fi
+    else
+        log_warn "未检测到活跃的防火墙或没有权限管理，请确保端口 $port 已开放"
     fi
-    
-    info "解压 V2Ray..."
-    unzip -q "$V2RAY_DIR/v2ray.zip" -d "$V2RAY_DIR/"
-    mv "$V2RAY_DIR/v2ray" "$BIN_DIR/"
-    mv "$V2RAY_DIR/v2ctl" "$BIN_DIR/"
-    chmod +x "$BIN_DIR/v2ray" "$BIN_DIR/v2ctl"
-    rm -f "$V2RAY_DIR/v2ray.zip" "$V2RAY_DIR/"*.json
 }
 
-# 生成配置文件
-generate_config() {
-    info "生成 V2Ray 配置文件..."
+# 检查端口占用情况
+check_port_availability() {
+    local port=$1
+    log_info "检查端口 $port 占用情况..."
     
-    cat > "$CONFIG_FILE" << EOF
+    if command -v netstat &> /dev/null; then
+        if netstat -tuln | grep -q ":$port "; then
+            log_error "端口 $port 已被占用，请检查是否有其他服务正在运行"
+            return 1
+        fi
+    elif command -v ss &> /dev/null; then
+        if ss -tuln | grep -q ":$port "; then
+            log_error "端口 $port 已被占用，请检查是否有其他服务正在运行"
+            return 1
+        fi
+    fi
+    
+    log_info "✓ 端口 $port 可用"
+    return 0
+}
+
+# 创建项目目录和文件
+create_project() {
+    log_info "创建项目目录: $PROJECT_DIR"
+    
+    mkdir -p "$PROJECT_DIR"
+    cd "$PROJECT_DIR"
+    
+    # 创建 package.json
+    cat > package.json << 'EOF'
 {
-  "log": {
-    "loglevel": "warning",
-    "access": "$LOG_DIR/access.log",
-    "error": "$LOG_DIR/error.log"
+  "name": "vless-container-server",
+  "version": "1.0.0",
+  "description": "VLESS over WebSocket server for container environments",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
   },
-  "inbounds": [{
-    "port": $PORT,
-    "protocol": "vless",
-    "settings": {
-      "clients": [
-        {
-          "id": "$UUID",
-          "level": 0,
-          "email": "user@v2ray.com"
-        }
-      ],
-      "decryption": "none"
-    },
-    "streamSettings": {
-      "network": "ws",
-      "wsSettings": {
-        "path": "/v2ray"
-      },
-      "security": "none"
+  "keywords": ["vless", "websocket", "container"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.14.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
+EOF
+
+    # 创建主应用文件
+    cat > app.js << 'EOF'
+#!/usr/bin/env node
+const WebSocket = require('ws');
+const http = require('http');
+const url = require('url');
+
+const CONFIG = {
+  port: parseInt(process.env.VLESS_PORT) || 14549,
+  wsPath: process.env.VLESS_WS_PATH || '/ws',
+  uuid: process.env.VLESS_UUID || '12345678-1234-1234-1234-123456789abc',
+  camouflage: process.env.VLESS_CAMOUFLAGE || 'blog'
+};
+
+console.log('启动VLESS服务器配置:');
+console.log('  端口:', CONFIG.port);
+console.log('  路径:', CONFIG.wsPath);
+console.log('  UUID:', CONFIG.uuid);
+console.log('  伪装模式:', CONFIG.camouflage);
+
+const server = http.createServer((req, res) => {
+  const parsedUrl = url.parse(req.url, true);
+  
+  if (parsedUrl.pathname === CONFIG.wsPath) {
+    res.writeHead(404);
+    res.end();
+    return;
+  }
+  
+  handleCamouflage(req, res, parsedUrl);
+});
+
+function handleCamouflage(req, res, parsedUrl) {
+  const headers = {
+    'Server': 'nginx/1.18.0',
+    'X-Content-Type-Options': 'nosniff'
+  };
+
+  switch (CONFIG.camouflage) {
+    case 'blog':
+      headers['Content-Type'] = 'text/html; charset=utf-8';
+      res.writeHead(200, headers);
+      res.end(`
+        <!DOCTYPE html>
+        <html>
+        <head><title>技术博客</title><style>body{font-family: system-ui; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6}</style></head>
+        <body>
+          <h1>技术探索与分享</h1>
+          <p>记录技术学习的点滴，分享开发经验...</p>
+          <article><h2>系统架构演进</h2><p>从单体架构到微服务的演变过程...</p></article>
+        </body>
+        </html>
+      `);
+      break;
+    case 'news':
+      headers['Content-Type'] = 'text/html; charset=utf-8';
+      res.writeHead(200, headers);
+      res.end(`
+        <!DOCTYPE html>
+        <html>
+        <head><title>新闻资讯</title><style>body{font-family: "Microsoft YaHei"; max-width: 700px; margin: 0 auto; padding: 15px; background: #f5f5f5}</style></head>
+        <body>
+          <h1>今日热点</h1>
+          <div style="background: white; padding: 15px; margin: 15px 0; border-radius: 5px">
+            <h3>科技创新推动行业发展</h3>
+            <p>最新研究报告显示，人工智能与云计算的融合正加速产业数字化转型...</p>
+          </div>
+        </body>
+        </html>
+      `);
+      break;
+    case 'api':
+      headers['Content-Type'] = 'application/json';
+      res.writeHead(200, headers);
+      res.end(JSON.stringify({ 
+        status: 'success', 
+        data: { 
+          message: 'API服务正常运行',
+          timestamp: new Date().toISOString(),
+          version: '1.0.0'
+        } 
+      }));
+      break;
+    case 'company':
+      headers['Content-Type'] = 'text/html; charset=utf-8';
+      res.writeHead(200, headers);
+      res.end(`
+        <!DOCTYPE html>
+        <html>
+        <head><title>企业官网</title><style>body{font-family: Arial; max-width: 1000px; margin: 0 auto; padding: 20px}</style></head>
+        <body>
+          <header style="text-align: center; padding: 20px 0; border-bottom: 1px solid #eee">
+            <h1>创新科技有限公司</h1>
+            <p>专业的技术解决方案提供商</p>
+          </header>
+          <main style="padding: 40px 0">
+            <h2>关于我们</h2>
+            <p>我们致力于为客户提供最优质的技术服务和解决方案...</p>
+          </main>
+        </body>
+        </html>
+      `);
+      break;
+    default:
+      headers['Content-Type'] = 'text/plain';
+      res.writeHead(200, headers);
+      res.end('Service is operating normally.');
+  }
+}
+
+const wss = new WebSocket.Server({ 
+  server,
+  path: CONFIG.wsPath,
+  verifyClient: (info) => {
+    const parsedUrl = url.parse(info.req.url, true);
+    const uuid = parsedUrl.pathname.split('/').pop();
+    return uuid === CONFIG.uuid;
+  }
+});
+
+wss.on('connection', function connection(ws, req) {
+  console.log('新的VLESS连接建立 - IP:', req.socket.remoteAddress);
+  
+  ws.on('message', function incoming(message) {
+    try {
+      ws.send(message);
+    } catch (error) {
+      console.error('处理数据错误:', error);
     }
-  }],
-  "outbounds": [{
-    "protocol": "freedom",
-    "settings": {}
-  }]
-}
+  });
+  
+  ws.on('close', () => {
+    console.log('VLESS连接关闭');
+  });
+  
+  ws.on('error', (error) => {
+    console.error('WebSocket错误:', error);
+  });
+});
+
+server.listen(CONFIG.port, '0.0.0.0', () => {
+  console.log(`✅ VLESS服务器运行在端口 ${CONFIG.port}`);
+  console.log(`🔗 WebSocket路径: ${CONFIG.wsPath}`);
+  console.log(`🔑 UUID: ${CONFIG.uuid}`);
+  console.log(`🎭 伪装模式: ${CONFIG.camouflage}`);
+  console.log(`📊 访问 http://localhost:${CONFIG.port} 查看伪装页面`);
+});
+
+process.on('SIGINT', () => {
+  console.log('正在关闭服务器...');
+  server.close(() => {
+    console.log('服务器已关闭');
+    process.exit(0);
+  });
+});
+
+process.on('SIGTERM', () => {
+  console.log('收到SIGTERM信号，正在关闭...');
+  server.close(() => {
+    console.log('服务器已关闭');
+    process.exit(0);
+  });
+});
 EOF
-    info "配置文件已生成: $CONFIG_FILE"
+
+    log_info "✓ 项目文件创建完成"
 }
 
-# 生成启动脚本
-generate_start_script() {
-    info "生成启动脚本..."
+# 安装依赖
+install_dependencies() {
+    log_info "安装Node.js依赖..."
+    cd "$PROJECT_DIR"
     
-    cat > "$V2RAY_DIR/start.sh" << 'EOF'
-#!/bin/bash
-cd "$(dirname "$0")"
-./bin/v2ray run -config config.json
-EOF
-
-    cat > "$V2RAY_DIR/stop.sh" << 'EOF'
-#!/bin/bash
-pkill -f "v2ray run -config config.json"
-EOF
-
-    chmod +x "$V2RAY_DIR/start.sh" "$V2RAY_DIR/stop.sh"
-}
-
-# 获取公网IP
-get_public_ip() {
-    info "获取服务器公网IP..."
-    PUBLIC_IP=$(curl -s -4 ip.sb 2>/dev/null || curl -s -4 ifconfig.me 2>/dev/null || echo "YOUR_SERVER_IP")
-    
-    if [ "$PUBLIC_IP" = "YOUR_SERVER_IP" ]; then
-        warn "无法自动获取公网IP，请手动替换连接中的 YOUR_SERVER_IP"
+    if npm install; then
+        log_info "✓ 依赖安装成功"
     else
-        info "服务器公网IP: $PUBLIC_IP"
-    fi
-}
-
-# 生成客户端连接信息
-generate_client_info() {
-    info "生成 VLESS 客户端连接信息..."
-    
-    cat << EOF
-
-================================ VLESS 配置信息 ================================
-服务器地址: $PUBLIC_IP
-端口: $PORT
-UUID: $UUID
-传输协议: ws
-路径: /v2ray
-安全: none
-
-VLESS 链接:
-vless://$UUID@$PUBLIC_IP:$PORT?type=ws&security=none&path=%2Fv2ray#$PUBLIC_IP
-
-Clash 配置:
-  - name: "VLESS-$PUBLIC_IP"
-    type: vless
-    server: $PUBLIC_IP
-    port: $PORT
-    uuid: $UUID
-    network: ws
-    ws-opts:
-      path: /v2ray
-    udp: true
-
-===============================================================================
-EOF
-
-    # 保存配置到文件
-    cat > "$V2RAY_DIR/client-info.txt" << EOF
-服务器地址: $PUBLIC_IP
-端口: $PORT
-UUID: $UUID
-传输协议: ws
-路径: /v2ray
-
-VLESS 链接:
-vless://$UUID@$PUBLIC_IP:$PORT?type=ws&security=none&path=%2Fv2ray#$PUBLIC_IP
-EOF
-    
-    info "客户端配置已保存到: $V2RAY_DIR/client-info.txt"
-}
-
-# 测试端口是否可用
-test_port() {
-    info "测试端口 $PORT 是否可用..."
-    
-    if command -v nc >/dev/null 2>&1; then
-        if nc -z localhost $PORT 2>/dev/null; then
-            error "端口 $PORT 已被占用，请更换端口或关闭占用程序"
-            exit 1
-        else
-            info "端口 $PORT 可用"
-        fi
-    else
-        warn "无法检查端口占用情况 (netcat 未安装)，请确保端口 $PORT 未被占用"
-    fi
-}
-
-# 启动服务
-start_service() {
-    info "启动 V2Ray 服务..."
-    
-    # 检查是否已在运行
-    if pgrep -f "v2ray run -config config.json" >/dev/null; then
-        warn "V2Ray 服务已在运行，正在停止..."
-        pkill -f "v2ray run -config config.json"
-        sleep 2
-    fi
-    
-    # 启动服务
-    cd "$V2RAY_DIR"
-    nohup ./bin/v2ray run -config config.json > "$LOG_DIR/run.log" 2>&1 &
-    local PID=$!
-    
-    sleep 3
-    
-    if ps -p $PID >/dev/null 2>&1; then
-        info "V2Ray 服务启动成功 (PID: $PID)"
-        
-        # 检查端口监听
-        if command -v ss >/dev/null 2>&1 && ss -tuln | grep -q ":$PORT "; then
-            info "端口 $PORT 监听正常"
-        else
-            warn "端口 $PORT 可能未正常监听，请检查日志: $LOG_DIR/run.log"
-        fi
-    else
-        error "V2Ray 服务启动失败，请检查日志: $LOG_DIR/run.log"
+        log_error "依赖安装失败"
         exit 1
     fi
 }
 
-# 显示使用说明
-show_usage() {
-    cat << EOF
+# 创建启动脚本
+create_startup_script() {
+    log_info "创建启动脚本..."
+    cd "$PROJECT_DIR"
+    
+    # 创建启动脚本
+    cat > start.sh << EOF
+#!/bin/bash
+export VLESS_PORT=${PORT}
+export VLESS_UUID="${UUID}"
+export VLESS_WS_PATH="${WS_PATH}"
+export VLESS_CAMOUFLAGE="${CAMOUFLAGE}"
 
-使用说明:
-启动服务: $V2RAY_DIR/start.sh
-停止服务: $V2RAY_DIR/stop.sh
-查看日志: tail -f $LOG_DIR/run.log
-配置文件: $CONFIG_FILE
-客户端配置: $V2RAY_DIR/client-info.txt
+echo "启动VLESS服务器..."
+echo "端口: \$VLESS_PORT"
+echo "UUID: \$VLESS_UUID" 
+echo "路径: \$VLESS_WS_PATH"
+echo "伪装: \$VLESS_CAMOUFLAGE"
+echo ""
 
-管理命令:
-启动: cd $V2RAY_DIR && ./start.sh
-停止: cd $V2RAY_DIR && ./stop.sh
-重启: 先运行 stop.sh 再运行 start.sh
-
+cd "$PROJECT_DIR"
+npm start
 EOF
+
+    chmod +x start.sh
+    
+    # 创建systemd服务文件（如果需要）
+    if [ "$EUID" -eq 0 ]; then
+        cat > /etc/systemd/system/vless-server.service << EOF
+[Unit]
+Description=VLESS WebSocket Server
+After=network.target
+
+[Service]
+Type=simple
+User=$SUDO_USER
+WorkingDirectory=$PROJECT_DIR
+Environment=VLESS_PORT=$PORT
+Environment=VLESS_UUID=$UUID
+Environment=VLESS_WS_PATH=$WS_PATH
+Environment=VLESS_CAMOUFLAGE=$CAMOUFLAGE
+ExecStart=/usr/bin/node $PROJECT_DIR/app.js
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
+EOF
+        log_info "✓ Systemd 服务文件已创建"
+    fi
+    
+    log_info "✓ 启动脚本创建完成"
+}
+
+# 显示部署信息
+show_deployment_info() {
+    log_info "🎉 VLESS 服务器部署完成！"
+    echo ""
+    echo "📋 部署信息:"
+    echo "   项目目录: $PROJECT_DIR"
+    echo "   服务端口: $PORT"
+    echo "   UUID: $UUID"
+    echo "   WebSocket路径: $WS_PATH"
+    echo "   伪装模式: $CAMOUFLAGE"
+    echo ""
+    echo "🚀 启动服务:"
+    echo "   cd $PROJECT_DIR && npm start"
+    echo "   或: $PROJECT_DIR/start.sh"
+    echo ""
+    echo "🔧 客户端连接配置:"
+    echo "   地址: 你的服务器IP:$PORT"
+    echo "   UUID: $UUID"
+    echo "   传输协议: ws"
+    echo "   WebSocket路径: $WS_PATH"
+    echo "   加密: none"
+    echo ""
+    echo "📜 查看日志:"
+    echo "   cd $PROJECT_DIR && tail -f npm-debug.log"
+    echo ""
+    
+    if [ "$EUID" -eq 0 ]; then
+        echo "⚙️  系统服务管理:"
+        echo "   sudo systemctl start vless-server"
+        echo "   sudo systemctl enable vless-server"
+        echo "   sudo systemctl status vless-server"
+    fi
 }
 
 # 主函数
 main() {
-    clear
-    echo "=========================================="
-    echo "   非 Root VLESS 部署脚本 (端口: $PORT)   "
-    echo "=========================================="
+    echo -e "${BLUE}"
+    echo "╔══════════════════════════════════════╗"
+    echo "║      VLESS over WebSocket 部署脚本    ║"
+    echo "║         端口: 14549 & No Root        ║"
+    echo "╚══════════════════════════════════════╝"
+    echo -e "${NC}"
     
-    get_architecture
-    test_port
-    create_directories
-    download_v2ray
-    generate_config
-    generate_start_script
-    get_public_ip
-    start_service
-    generate_client_info
-    show_usage
+    # 设置默认值
+    PORT=${PORT:-$DEFAULT_PORT}
+    UUID=${UUID:-$DEFAULT_UUID}
+    WS_PATH=${WS_PATH:-$DEFAULT_WS_PATH}
+    CAMOUFLAGE=${CAMOUFLAGE:-$DEFAULT_CAMOUFLAGE}
     
-    info "部署完成！所有文件安装在: $V2RAY_DIR"
+    # 解析命令行参数
+    parse_args "$@"
+    
+    log_info "开始部署VLESS服务器..."
+    log_info "配置: 端口=$PORT, UUID=$UUID, 路径=$WS_PATH, 伪装=$CAMOUFLAGE"
+    
+    # 执行部署步骤
+    check_dependencies
+    check_port_availability $PORT
+    manage_firewall $PORT
+    create_project
+    install_dependencies
+    create_startup_script
+    show_deployment_info
+    
+    log_info "✅ 部署完成！"
 }
 
-# 执行主函数
+# 运行主函数
 main "$@"
