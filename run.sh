@@ -1,8 +1,8 @@
 #!/bin/bash
 # ============================================================
-# 🌀 VLESS over WebSocket (方案3 + 自动保存 UUID)
+# 🌀 VLESS over WebSocket (固定 UUID + 自动保存)
 # 作者: afd riu
-# 用法: curl -Ls https://raw.githubusercontent.com/afdriu/vless/main/vless-lite.sh | bash
+# 用法: curl -Ls https://raw.githubusercontent.com/afdriu/vless/main/vless-fixed.sh | bash
 # ============================================================
 
 set -e
@@ -10,7 +10,7 @@ set -e
 # ==== 默认参数 ====
 IP=${IP:-85.215.137.163}
 PORT=${PORT:-14549}
-UUID=${UUID:-$(cat /proc/sys/kernel/random/uuid 2>/dev/null || echo "12345678-1234-1234-1234-123456789abc")}
+UUID="2c1a7a59-6241-4114-a26c-1da2e73444dc"   # 固定 UUID
 WS_PATH=${WS_PATH:-/ws}
 CAMOUFLAGE=${CAMOUFLAGE:-blog}
 PROJECT_DIR=${PROJECT_DIR:-$HOME/vless-server}
@@ -41,7 +41,7 @@ setup_project() {
   mkdir -p "$PROJECT_DIR"
   cd "$PROJECT_DIR"
 
-  # 保存 UUID
+  # 保存 UUID（固定）
   echo "$UUID" > "$UUID_FILE"
 
   cat > package.json <<EOF
@@ -64,7 +64,7 @@ const fs = require('fs');
 const CONFIG = {
   port: parseInt(process.env.VLESS_PORT) || 14549,
   wsPath: process.env.VLESS_WS_PATH || '/ws',
-  uuid: process.env.VLESS_UUID || fs.existsSync('./UUID.txt') ? fs.readFileSync('./UUID.txt','utf8').trim() : '12345678-1234-1234-1234-123456789abc',
+  uuid: process.env.VLESS_UUID || fs.existsSync('./UUID.txt') ? fs.readFileSync('./UUID.txt','utf8').trim() : '2c1a7a59-6241-4114-a26c-1da2e73444dc',
   camouflage: process.env.VLESS_CAMOUFLAGE || 'blog'
 };
 
@@ -136,7 +136,7 @@ EOF
 
 # ==== 输出信息 ====
 print_link() {
-  VLESS_LINK="vless://$(cat $UUID_FILE)@${IP}:${PORT}?encryption=none&security=none&type=ws&host=${IP}&path=${WS_PATH}#${IP}"
+  VLESS_LINK="vless://${UUID}@${IP}:${PORT}?encryption=none&security=none&type=ws&host=${IP}&path=${WS_PATH}#${IP}"
   
   echo
   log "✅ 部署完成！"
