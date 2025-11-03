@@ -6,7 +6,7 @@
 set -e
 
 # 默认配置 - 端口已改为14533
-DEFAULT_PORT=14533
+DEFAULT_PORT=14465
 DEFAULT_UUID=$(cat /proc/sys/kernel/random/uuid 2>/dev/null || echo "12345678-1234-1234-1234-123456789abc")
 DEFAULT_WS_PATH="/ws"
 DEFAULT_CAMOUFLAGE="blog"
