@@ -1,119 +1,20 @@
-# 移动 01
-vless=162.159.195.22:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】01-195.22
-
-# 移动 02
-vless=162.159.195.69:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】02-195.69
-
-# 移动 03
-vless=162.159.195.94:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】03-195.94
-
-# 移动 04
-vless=162.159.195.17:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】04-195.17
-
-# 移动 05
-vless=162.159.195.101:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】05-195.101
-
-# 移动 06
-vless=162.159.192.25:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】06-192.25
-
-# 移动 07
-vless=162.159.192.53:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】07-192.53
-
-# 移动 08
-vless=162.159.192.33:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】08-192.33
-
-# 移动 09
-vless=198.41.212.17:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】09-212.17
-
-# 移动 10
-vless=198.41.212.23:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】10-212.23
-
-# 移动 11
-vless=198.41.212.75:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】11-212.75
-
-# 移动 12
-vless=198.41.212.90:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】12-212.90
-
-# 移动 13
-vless=104.19.155.92:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】13-155.92
-
-# 移动 14
-vless=104.19.155.85:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】14-155.85
-
-# 移动 15
-vless=104.16.177.116:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】15-177.116
-
-# 移动 16
-vless=104.17.120.81:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】16-120.81
-
-# 移动 17
-vless=104.17.120.76:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】17-120.76
-
-# 移动 18
-vless=104.18.30.122:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】18-30.122
-
-# 移动 19
-vless=104.19.51.186:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】19-51.186
-
-# 移动 20
-vless=104.21.33.150:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【移动】20-33.150
-
-# 电信 01
-vless=172.64.146.62:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】01-146.62
-
-# 电信 02
-vless=172.64.146.98:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】02-146.98
-
-# 电信 03
-vless=172.64.146.91:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】03-146.91
-
-# 电信 04
-vless=172.64.150.39:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】04-150.39
-
-# 电信 05
-vless=172.64.150.22:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】05-150.22
-
-# 电信 06
-vless=162.159.44.15:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】06-44.15
-
-# 电信 07
-vless=162.159.44.23:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】07-44.23
-
-# 电信 08
-vless=162.159.44.31:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】08-44.31
-
-# 电信 09
-vless=104.17.88.12:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】09-88.12
-
-# 电信 10
-vless=104.17.88.91:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】10-88.91
-
-# 电信 11
-vless=104.17.88.117:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】11-88.117
-
-# 电信 12
-vless=104.17.89.55:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】12-89.55
-
-# 电信 13
-vless=104.16.219.105:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】13-219.105
-
-# 电信 14
-vless=104.16.219.88:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】14-219.88
-
-# 电信 15
-vless=104.18.24.76:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】15-24.76
-
-# 电信 16
-vless=104.19.45.39:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】16-45.39
-
-# 电信 17
-vless=104.19.45.88:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】17-45.88
-
-# 电信 18
-vless=198.41.214.103:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】18-214.103
-
-# 电信 19
-vless=198.41.214.115:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】19-214.115
-
-# 电信 20
-vless=198.41.215.86:443, method=none, password=ddc9d14a-6a87-433d-af1e-4ec21c59f045, obfs=wss, obfs-host=x10.hkrtu.cn, obfs-uri=/, tls-verification=false, udp-relay=true, tag=【电信】20-215.86
+162.159.195.22:443#香港 / 东京（高）
+162.159.195.69:443#香港 / 东京（高）
+162.159.195.94:443#香港 / 东京（高）
+162.159.192.25:443#香港（高）
+162.159.192.53:443#香港（高）
+172.64.146.62:443#香港 / 美西（SJC/LAX）（中-高）
+172.64.146.98:443#香港 / 美西（中-高）
+172.64.150.39:443#香港 / 美西（中）
+162.159.44.15:443#香港 / 新加坡（中）
+162.159.44.23:443#香港 / 新加坡（中）
+198.41.212.17:443#香港 / 美西（中）
+198.41.212.23:443#香港 / 美西（中）
+104.19.155.92:443#新加坡 / 香港（中）
+104.16.177.116:443#东京 / 香港（中）
+104.17.88.12:443#香港 / 美西（低-中）
+104.17.88.91:443#香港 / 美西（低-中）
+104.18.30.122:443#美西 / 欧洲（低）
+104.21.33.150:443#欧洲 / 美西（低）
+104.16.219.105:443#香港 / 美西（中）
+104.19.51.186:443#美西（LAX/SJC）（低）
