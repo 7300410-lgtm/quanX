@@ -1,0 +1,11 @@
+||zijieapi.com.*.cdnbuild.net^
+||fqnovel.com.bytedns3.com^
+||mssdk3-normal-lf.zijieapi.com^
+||lf-reward-video.bytedcdn.com^
+||p3-novel-lottery.byteimg.com^
+||saveu*-normal-lf.zijieapi.com^
+||byteimg.com.queniusy.com^
+||bytegecko.com^
+||ad.qznovelvod.com^
+||zjtd*.v6.d.cdn.chinamobile.com^
+||cdnbuild.net^$domain=com.dragon.read
