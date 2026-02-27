@@ -25,3 +25,9 @@
 ||ad.qznovelvod.com^
 ||zjtd*.v6.d.cdn.chinamobile.com^
 ||cdnbuild.net^$domain=com.dragon.read
+||ads32-normal-lq.byteimg.com^
+||ad.zijieapi.com^
+||is.snssdk.com^
+||dg.pangle.io^
+||i.snssdk.com^
+||sf3-ttcdn-tos.pstatp.com^
