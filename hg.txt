@@ -52,3 +52,17 @@
 ||sf6-ttcdn-tos.pstatp.com/obj/ad-pattern^
 ||ads32-normal-lq.byteimg.com^
 ||is.snssdk.com^
+||mi.gdt.qq.com^
+||win.gdt.qq.com^
+||v.gdt.qq.com^
+||t.gdt.qq.com^
+||pgdt.gtimg.cn^
+||*.pangle.com^
+||toblog.itobsnssdk.com^
+||api-access.pangle.io/api/ad/union/sdk/get_ads/$important
+||pangle.io^$domain=com.dragon.read
+||sf*-ttcdn-tos.pstatp.com/obj/ad-pattern-common^
+||sf*-ttcdn-tos.pstatp.com/obj/union-platform^
+||v*-novel-app.byteimg.com/obj/novel-app-patterns^
+||centurygames.com^
+||centurygame.com.cn^
