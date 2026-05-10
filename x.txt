@@ -21,13 +21,3 @@ vless=saas.sin.fan:443, method=none, password=c4344657-617c-4bb3-9304-e87c27d9f4
 vless=shopify.com:443, method=none, password=c91bd85b-8796-479b-adaf-211bba37e319, obfs=wss, obfs-host=us02.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇺🇸 US-nat-PHX
 
 vless=shopify.com:443, method=none, password=805acb53-96d9-47bb-83f9-67bc4e74ea24, obfs=wss, obfs-host=us04.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇺🇸 US-nat-SJC
-
-#德国
-vless=shopify.com:443, method=none, password=2eebbc5f-877d-42f1-872b-750c4bc35b28, obfs=wss, obfs-host=de.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇩🇪 DE-nat
-#日本
-
-
-#sock5台湾出口
-
-
-vless=shopify.com:443, method=none, password=abe837f3-b7bd-4023-9aff-c8ac2f97d84c, obfs=wss, obfs-host=us01.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇨🇳 TW-netjett
