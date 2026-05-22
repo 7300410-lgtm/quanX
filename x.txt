@@ -9,8 +9,8 @@ vless=shopify.com:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cbc
 vless=saas.sin.fan:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cbc6, obfs=wss, obfs-host=tw.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=TWLite-Vl电信
 #美国
 
-vless=shopify.com:443, method=none, password=c4344657-617c-4bb3-9304-e87c27d9f4bc, obfs=wss, obfs-host=us01.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇺🇸 LAX4837移动
-vless=saas.sin.fan:443, method=none, password=c4344657-617c-4bb3-9304-e87c27d9f4bc, obfs=wss, obfs-host=us01.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇺🇸 LAX4837电信
+vless=shopify.com:443, method=none, password=c4344657-617c-4bb3-9304-e87c27d9f4bc, obfs=wss, obfs-host=us01.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇺🇸 LAX4837ISP2移动
+vless=saas.sin.fan:443, method=none, password=c4344657-617c-4bb3-9304-e87c27d9f4bc, obfs=wss, obfs-host=us01.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇺🇸 LAX4837ISP2电信
 
 vless=shopify.com:443, method=none, password=c91bd85b-8796-479b-adaf-211bba37e319, obfs=wss, obfs-host=us02.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇺🇸 US-nat-PHX
 
