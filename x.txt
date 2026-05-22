@@ -5,8 +5,8 @@ vless=shopify.com:443, method=none, password=8deb125c-ff36-4938-bcca-524a00c864c
 vless=saas.sin.fan:443, method=none, password=8deb125c-ff36-4938-bcca-524a00c864c1, obfs=wss, obfs-host=hk2.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇭🇰 HKL V2电信
 
 #台湾
-vless=shopify.com:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cbc6, obfs=wss, obfs-host=tw.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=TWLite-Vl移动
-vless=saas.sin.fan:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cbc6, obfs=wss, obfs-host=tw.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=TWLite-Vl电信
+vless=shopify.com:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cbc6, obfs=wss, obfs-host=tw.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=TWL移动
+vless=saas.sin.fan:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cbc6, obfs=wss, obfs-host=tw.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=TWL电信
 #美国
 
 vless=shopify.com:443, method=none, password=c4344657-617c-4bb3-9304-e87c27d9f4bc, obfs=wss, obfs-host=us01.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇺🇸 LAX4837ISP2移动
