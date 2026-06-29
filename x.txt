@@ -13,5 +13,5 @@ vless=saas.sin.fan:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cb
 
 vless=shopify.com:443, method=none, password=c4344657-617c-4bb3-9304-e87c27d9f4bc, obfs=wss, obfs-host=us01.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇺🇸 LAX4837ISP2移动
 vless=saas.sin.fan:443, method=none, password=c4344657-617c-4bb3-9304-e87c27d9f4bc, obfs=wss, obfs-host=us01.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇺🇸 LAX4837ISP2电信
-
+trojan://c4344657-617c-4bb3-9304-e87c27d9f4bc@38.175.222.16:30001?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#us-LAX4837-%E7%9B%B4%E8%BF%9E
 trojan://bfe32b85-57a0-4b2c-bd51-b575f5396a98@23.144.124.48:30009?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#us-9929-%E7%9B%B4%E8%BF%9E
