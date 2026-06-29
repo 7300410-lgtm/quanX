@@ -24,6 +24,3 @@ vless://bfe32b85-57a0-4b2c-bd51-b575f5396a98@saas.sin.fan:443?encryption=none&se
 vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@shopify.com:443?encryption=none&security=tls&sni=jp01.hkrtu.cn&insecure=0&allowInsecure=0&type=ws&host=jp01.hkrtu.cn&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AF%F0%9F%87%B5%20JPSB移动
 
 vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@saas.sin.fan:443?encryption=none&security=tls&sni=jp01.hkrtu.cn&insecure=0&allowInsecure=0&type=ws&host=jp01.hkrtu.cn&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AF%F0%9F%87%B5%20JPSB电信
-
-trojan://01d14112-5472-4d9e-b06c-93dc5f7fc332@[2a13:edc0:21:cb77:9ab7:49eb:f08a:e6bf]:30002?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%AF%F0%9F%87%B5%20JPSB%20trojan-direct-clone
-vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@[2a13:edc0:21:cb77:9ab7:49eb:f08a:e6bf]:30001?encryption=none&flow=xtls-rprx-vision&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=K_6tBleTIFyMX82ASMz5ElRy5WL9Yp8rdss3V9qAYzs&type=tcp&headerType=none#%3F%3F%3F%3F%20JPSB%20reality-vision-clone
