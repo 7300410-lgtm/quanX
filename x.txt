@@ -19,3 +19,8 @@ vless://bfe32b85-57a0-4b2c-bd51-b575f5396a98@saas.sin.fan:443?encryption=none&se
 #trojan://c4344657-617c-4bb3-9304-e87c27d9f4bc@38.175.222.16:30001?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#us-LAX4837-%E7%9B%B4%E8%BF%9E
 #trojan://bfe32b85-57a0-4b2c-bd51-b575f5396a98@23.144.124.48:30009?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#us-9929-%E7%9B%B4%E8%BF%9E
 #vless://bfe32b85-57a0-4b2c-bd51-b575f5396a98@23.144.124.48:30000?encryption=none&flow=xtls-rprx-vision&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=AxTRebVI_MoJlviT8v-fXzyrJbO2WkGTwSSKcrh9P34&type=tcp&headerType=none#%F0%9F%87%BA%F0%9F%87%B8%20NUS1-202606271205191c503c%20reality-vision
+
+#日本
+vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@shopify.com:443?encryption=none&security=tls&sni=jp01.hkrtu.cn&insecure=0&allowInsecure=0&type=ws&host=jp01.hkrtu.cn&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AF%F0%9F%87%B5%20JPSB移动
+
+vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@saas.sin.fan:443?encryption=none&security=tls&sni=jp01.hkrtu.cn&insecure=0&allowInsecure=0&type=ws&host=jp01.hkrtu.cn&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AF%F0%9F%87%B5%20JPSB电信
