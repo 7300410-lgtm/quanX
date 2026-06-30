@@ -3,8 +3,9 @@
 vless=shopify.com:443, method=none, password=8deb125c-ff36-4938-bcca-524a00c864c1, obfs=wss, obfs-host=hk2.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇭🇰 HKL V2移动
 #vless=www.shopify.com:443, method=none, password=8deb125c-ff36-4938-bcca-524a00c864c1, obfs=wss, obfs-host=hk2.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇭🇰 HKL V2电
 vless=saas.sin.fan:443, method=none, password=8deb125c-ff36-4938-bcca-524a00c864c1, obfs=wss, obfs-host=hk2.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇭🇰 HKL V2电信
-vless://a3d5665f-c628-46bd-823e-1876c1f8baed@saas.sin.fan:443?encryption=none&security=tls&sni=hk03.hkrtu.cn&insecure=0&allowInsecure=0&type=ws&host=hk03.hkrtu.cn&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AD%F0%9F%87%B0%20NHK-Std%20%E7%94%B5%E4%BF%A1
-vless://a3d5665f-c628-46bd-823e-1876c1f8baed@shopify.com:443?encryption=none&security=tls&sni=hk03.hkrtu.cn&insecure=0&allowInsecure=0&type=ws&host=hk03.hkrtu.cn&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AD%F0%9F%87%B0%20NHK-Std%20%E7%A7%BB%E5%8A%A8
+vless://d4ba7946-25b3-4d0a-8d4f-21cd7396f8e0@shopify.com:443?encryption=none&security=tls&sni=hk03.hkrtu.cn&insecure=0&allowInsecure=0&type=ws&host=hk03.hkrtu.cn&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AD%F0%9F%87%B0%20NHK-Std移动
+vless://d4ba7946-25b3-4d0a-8d4f-21cd7396f8e0@saas.sin.fan:443?encryption=none&security=tls&sni=hk03.hkrtu.cn&insecure=0&allowInsecure=0&type=ws&host=hk03.hkrtu.cn&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AD%F0%9F%87%B0%20NHK-Std电信
+trojan://d4ba7946-25b3-4d0a-8d4f-21cd7396f8e0@2.27.173.236:30001?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%AD%F0%9F%87%B0%20NHK-Std%E7%9B%B4%E8%BF%9E
 
 #台湾
 vless=shopify.com:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cbc6, obfs=wss, obfs-host=tw.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=TWL移动
