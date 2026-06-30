@@ -5,8 +5,8 @@ vless://d4ba7946-25b3-4d0a-8d4f-21cd7396f8e0@saas.sin.fan:443?encryption=none&se
 trojan://d4ba7946-25b3-4d0a-8d4f-21cd7396f8e0@2.27.173.236:30001?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%AD%F0%9F%87%B0%20NHK-Std%E7%9B%B4%E8%BF%9E
 
 #台湾
-vless=shopify.com:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cbc6, obfs=wss, obfs-host=tw.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=TWL移动
-vless=saas.sin.fan:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cbc6, obfs=wss, obfs-host=tw.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=TWL电信
+vless=shopify.com:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cbc6, obfs=wss, obfs-host=tw.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇭🇰 TWL移动
+vless=saas.sin.fan:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cbc6, obfs=wss, obfs-host=tw.hkrtu.cn, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇭🇰 TWL电信
 #美国
 
 #4837
