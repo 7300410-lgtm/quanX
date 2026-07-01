@@ -11,8 +11,6 @@ vless=saas.sin.fan:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cb
 #4837
 vless=shopify.com:443, method=none, password=c4344657-617c-4bb3-9304-e87c27d9f4bc, obfs=wss, obfs-host=us4837isp.383941.xyz, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇺🇸 us-LAX4837ISP移动
 vless=saas.sin.fan:443, method=none, password=c4344657-617c-4bb3-9304-e87c27d9f4bc, obfs=wss, obfs-host=us4837isp.383941.xyz, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇺🇸 us-LAX4837ISP电信
-trojan://c4344657-617c-4bb3-9304-e87c27d9f4bc@shopify.com:443?security=tls&sni=us4837isp.383941.xyz&fp=chrome&insecure=0&allowInsecure=0&type=ws&host=us4837isp.383941.xyz&path=%2Fargox-tr%3Fed%3D2560#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP%E7%A7%BB%E5%8A%A8
-trojan://c4344657-617c-4bb3-9304-e87c27d9f4bc@saas.sin.fan:443?security=tls&sni=us4837isp.383941.xyz&fp=chrome&insecure=0&allowInsecure=0&type=ws&host=us4837isp.383941.xyz&path=%2Fargox-tr%3Fed%3D2560#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP%E7%94%B5%E4%BF%A1
 trojan://c4344657-617c-4bb3-9304-e87c27d9f4bc@38.175.222.16:30001?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%BA%F0%9F%87%B8%20us-LAX4837ISP%20%E7%9B%B4%E8%BF%9E
 
 #9929
