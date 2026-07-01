@@ -14,9 +14,9 @@ vless=saas.sin.fan:443, method=none, password=c4344657-617c-4bb3-9304-e87c27d9f4
 #trojan://c4344657-617c-4bb3-9304-e87c27d9f4bc@38.175.222.16:30001?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%BA%F0%9F%87%B8%20us-LAX4837ISP%20%E7%9B%B4%E8%BF%9E
 
 #9929
-vless://bfe32b85-57a0-4b2c-bd51-b575f5396a98@shopify.com:443?encryption=none&security=tls&sni=us9929.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=us9929.383941.xyz&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%BA%F0%9F%87%B8%20us-9929移动
-vless://bfe32b85-57a0-4b2c-bd51-b575f5396a98@saas.sin.fan:443?encryption=none&security=tls&sni=us9929.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=us9929.383941.xyz&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%BA%F0%9F%87%B8%20us-9929电信
-trojan://bfe32b85-57a0-4b2c-bd51-b575f5396a98@23.144.124.48:30002?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%BA%F0%9F%87%B8%20us-9929%20%E7%9B%B4%E8%BF%9E
+#vless://bfe32b85-57a0-4b2c-bd51-b575f5396a98@shopify.com:443?encryption=none&security=tls&sni=us9929.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=us9929.383941.xyz&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%BA%F0%9F%87%B8%20us-9929移动
+#vless://bfe32b85-57a0-4b2c-bd51-b575f5396a98@saas.sin.fan:443?encryption=none&security=tls&sni=us9929.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=us9929.383941.xyz&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%BA%F0%9F%87%B8%20us-9929电信
+#trojan://bfe32b85-57a0-4b2c-bd51-b575f5396a98@23.144.124.48:30002?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%BA%F0%9F%87%B8%20us-9929%20%E7%9B%B4%E8%BF%9E
 
 #日本
 vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@shopify.com:443?encryption=none&security=tls&sni=jpsb.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=jpsb.383941.xyz&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AF%F0%9F%87%B5%20JPSB移动
