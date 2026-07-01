@@ -1,4 +1,3 @@
-
 #香港
 vless://d4ba7946-25b3-4d0a-8d4f-21cd7396f8e0@shopify.com:443?encryption=none&security=tls&sni=hk03.hkrtu.cn&insecure=0&allowInsecure=0&type=ws&host=hk03.hkrtu.cn&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AD%F0%9F%87%B0%20NHK-Std移动
 vless://d4ba7946-25b3-4d0a-8d4f-21cd7396f8e0@saas.sin.fan:443?encryption=none&security=tls&sni=hk03.hkrtu.cn&insecure=0&allowInsecure=0&type=ws&host=hk03.hkrtu.cn&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AD%F0%9F%87%B0%20NHK-Std电信
@@ -18,12 +17,10 @@ trojan://c4344657-617c-4bb3-9304-e87c27d9f4bc@38.175.222.16:30001?security=tls&s
 vless://bfe32b85-57a0-4b2c-bd51-b575f5396a98@shopify.com:443?encryption=none&security=tls&sni=us03.hkrtu.cn&insecure=0&allowInsecure=0&type=ws&host=us03.hkrtu.cn&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%BA%F0%9F%87%B8%20us-9929移动
 vless://bfe32b85-57a0-4b2c-bd51-b575f5396a98@saas.sin.fan:443?encryption=none&security=tls&sni=us03.hkrtu.cn&insecure=0&allowInsecure=0&type=ws&host=us03.hkrtu.cn&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%BA%F0%9F%87%B8%20us-9929电信
 trojan://bfe32b85-57a0-4b2c-bd51-b575f5396a98@23.144.124.48:30002?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%BA%F0%9F%87%B8%20us-9929%20%E7%9B%B4%E8%BF%9E
-#vless://bfe32b85-57a0-4b2c-bd51-b575f5396a98@23.144.124.48:30000?encryption=none&flow=xtls-rprx-vision&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=AxTRebVI_MoJlviT8v-fXzyrJbO2WkGTwSSKcrh9P34&type=tcp&headerType=none#%F0%9F%87%BA%F0%9F%87%B8%20NUS1-202606271205191c503c%20reality-vision
 
 #日本
-vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@shopify.com:443?encryption=none&security=tls&sni=jp01.hkrtu.cn&insecure=0&allowInsecure=0&type=ws&host=jp01.hkrtu.cn&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AF%F0%9F%87%B5%20JPSB移动
+vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@shopify.com:443?encryption=none&security=tls&sni=jpsb.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=jpsb.383941.xyz&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AF%F0%9F%87%B5%20JPSB移动
 
-vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@saas.sin.fan:443?encryption=none&security=tls&sni=jp01.hkrtu.cn&insecure=0&allowInsecure=0&type=ws&host=jp01.hkrtu.cn&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AF%F0%9F%87%B5%20JPSB电信
+vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@saas.sin.fan:443?encryption=none&security=tls&sni=jpsb.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=jpsb.383941.xyz&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AF%F0%9F%87%B5%20JPSB电信
 
 trojan://01d14112-5472-4d9e-b06c-93dc5f7fc332@45.192.196.224:30002?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%AF%F0%9F%87%B5%20JPSB%20%E7%9B%B4%E8%BF%9E
-#vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@45.192.196.224:30001?encryption=none&flow=xtls-rprx-vision&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=K_6tBleTIFyMX82ASMz5ElRy5WL9Yp8rdss3V9qAYzs&type=tcp&headerType=none#%F0%9F%87%AF%F0%9F%87%B5%20%20JPSB%20%E7%9B%B4%E8%BF%9E
