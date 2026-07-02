@@ -3,6 +3,8 @@ vless://d4ba7946-25b3-4d0a-8d4f-21cd7396f8e0@shopify.com:443?encryption=none&sec
 vless://d4ba7946-25b3-4d0a-8d4f-21cd7396f8e0@saas.sin.fan:443?encryption=none&security=tls&sni=nhkstd.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=nhkstd.383941.xyz&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AD%F0%9F%87%B0%20NHK-Std电信
 vless://d4ba7946-25b3-4d0a-8d4f-21cd7396f8e0@2.27.173.236:30002?encryption=none&flow=xtls-rprx-vision&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=LYI5TSpiy-R16iERuKbLcNmNTrw1BdgCxEuFgiMDsAs&type=tcp&headerType=none#🇭🇰%20NHK-Std%20直连
 #trojan://d4ba7946-25b3-4d0a-8d4f-21cd7396f8e0@2.27.173.236:30001?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%AD%F0%9F%87%B0%20NHK-Std%E7%9B%B4%E8%BF%9E
+vless://ec6c9365-a64a-4824-9a60-c2ac31c3431b@122.10.114.101:30000?encryption=none&flow=xtls-rprx-vision&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=woMGdvRpdqurAZDQYTmyldH5w7A3xx3clPRXyKqufSI&type=tcp&headerType=none#🇭🇰%20HKCM1-202512121935139f6c03%20reality-vision
+
 
 #台湾
 vless=shopify.com:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cbc6, obfs=wss, obfs-host=twlite.383941.xyz, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇭🇰 TWL移动
