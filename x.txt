@@ -12,6 +12,7 @@ anytls://c4344657-617c-4bb3-9304-e87c27d9f4bc@38.175.222.16:8891?security=tls&sn
 
 
 #日本
-anytls://e34798fc-3256-4252-9c66-335b82599c6c@45.192.196.224:8882?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%AF%F0%9F%87%B5%20JPSB%20anytls
+anytls://44a9c367-22f1-47dd-90af-f206676bd729@45.192.196.224:8883?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20anytls
+
 
 #测试
