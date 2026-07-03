@@ -15,15 +15,12 @@ tuic://c4344657-617c-4bb3-9304-e87c27d9f4bc%3Ac4344657-617c-4bb3-9304-e87c27d9f4
 
 
 #日本
-vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@shopify.com:443?encryption=none&security=tls&sni=jpsb.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=jpsb.383941.xyz&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AF%F0%9F%87%B5%20JPSB移动
-
-vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@saas.sin.fan:443?encryption=none&security=tls&sni=jpsb.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=jpsb.383941.xyz&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AF%F0%9F%87%B5%20JPSB电信
-
-vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@45.192.196.224:8881?encryption=none&flow=xtls-rprx-vision&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=CrJq0xAgqJqoNuRv2HC3TRQ__Ncr_2dvIWp1ChN7Q0Q&type=tcp&headerType=none#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20xtls-reality
-anytls://01d14112-5472-4d9e-b06c-93dc5f7fc332@45.192.196.224:8891?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20anytls
-vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@45.192.196.224:8890?encryption=none&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=CrJq0xAgqJqoNuRv2HC3TRQ__Ncr_2dvIWp1ChN7Q0Q&type=grpc&authority=&serviceName=grpc&mode=gun#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20grpc-reality
-tuic://01d14112-5472-4d9e-b06c-93dc5f7fc332%3A01d14112-5472-4d9e-b06c-93dc5f7fc332@45.192.196.224:8883?sni=addons.mozilla.org&alpn=h3&insecure=0&allowInsecure=0&congestion_control=bbr#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20tuic
-trojan://01d14112-5472-4d9e-b06c-93dc5f7fc332@45.192.196.224:8886?security=tls&sni=addons.mozilla.org&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20trojan
+vless://c4344657-617c-4bb3-9304-e87c27d9f4bc@38.175.222.16:8881?encryption=none&flow=xtls-rprx-vision&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=cA5paWQXfn8S6QUqrt1UZVs63t5w65dsAG1dvY2mFzc&type=tcp&headerType=none#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP2%20xtls-reality
+anytls://c4344657-617c-4bb3-9304-e87c27d9f4bc@38.175.222.16:8891?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP2%20anytls
+trojan://c4344657-617c-4bb3-9304-e87c27d9f4bc@38.175.222.16:8886?security=tls&sni=addons.mozilla.org&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP2%20trojan
+tuic://c4344657-617c-4bb3-9304-e87c27d9f4bc%3Ac4344657-617c-4bb3-9304-e87c27d9f4bc@38.175.222.16:8883?sni=addons.mozilla.org&alpn=h3&insecure=0&allowInsecure=0&congestion_control=bbr#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP2%20tuic
+vless://c4344657-617c-4bb3-9304-e87c27d9f4bc@shopify.com:443?encryption=none&security=tls&sni=us4837isp.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=us4837isp.383941.xyz&path=%2Fc4344657-617c-4bb3-9304-e87c27d9f4bc-vless%3Fed%3D2560#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP2%20移动
+vless://c4344657-617c-4bb3-9304-e87c27d9f4bc@saas.sin.fan:443?encryption=none&security=tls&sni=us4837isp.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=us4837isp.383941.xyz&path=%2Fc4344657-617c-4bb3-9304-e87c27d9f4bc-vless%3Fed%3D2560#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP2%20电信
 
 
 #测试
