@@ -13,12 +13,11 @@ vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@shopify.com:443?encryption=none&sec
 
 vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@saas.sin.fan:443?encryption=none&security=tls&sni=jpsb.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=jpsb.383941.xyz&path=%2Fargox-vl%3Fed%3D2560#%F0%9F%87%AF%F0%9F%87%B5%20JPSB电信
 
-vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@45.192.196.224:30001?encryption=none&flow=xtls-rprx-vision&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=K_6tBleTIFyMX82ASMz5ElRy5WL9Yp8rdss3V9qAYzs&type=tcp&headerType=none#🇯🇵%20JPSB%20直连
+vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@45.192.196.224:8881?encryption=none&flow=xtls-rprx-vision&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=CrJq0xAgqJqoNuRv2HC3TRQ__Ncr_2dvIWp1ChN7Q0Q&type=tcp&headerType=none#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20xtls-reality
+anytls://01d14112-5472-4d9e-b06c-93dc5f7fc332@45.192.196.224:8891?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20anytls
+vless://01d14112-5472-4d9e-b06c-93dc5f7fc332@45.192.196.224:8890?encryption=none&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=CrJq0xAgqJqoNuRv2HC3TRQ__Ncr_2dvIWp1ChN7Q0Q&type=grpc&authority=&serviceName=grpc&mode=gun#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20grpc-reality
+tuic://01d14112-5472-4d9e-b06c-93dc5f7fc332%3A01d14112-5472-4d9e-b06c-93dc5f7fc332@45.192.196.224:8883?sni=addons.mozilla.org&alpn=h3&insecure=0&allowInsecure=0&congestion_control=bbr#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20tuic
+trojan://01d14112-5472-4d9e-b06c-93dc5f7fc332@45.192.196.224:8886?security=tls&sni=addons.mozilla.org&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20trojan
 
 
 #测试
-anytls://9eafd72d-c8c3-4692-8b23-c83e4c122616@45.192.196.224:8891?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20anytls
-trojan://9eafd72d-c8c3-4692-8b23-c83e4c122616@45.192.196.224:8886?security=tls&sni=addons.mozilla.org&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20trojan
-tuic://9eafd72d-c8c3-4692-8b23-c83e4c122616%3A9eafd72d-c8c3-4692-8b23-c83e4c122616@45.192.196.224:8883?sni=addons.mozilla.org&alpn=h3&insecure=0&allowInsecure=0&congestion_control=bbr#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20tuic
-vless://9eafd72d-c8c3-4692-8b23-c83e4c122616@45.192.196.224:8890?encryption=none&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=CrJq0xAgqJqoNuRv2HC3TRQ__Ncr_2dvIWp1ChN7Q0Q&type=grpc&authority=&serviceName=grpc&mode=gun#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20grpc-reality
-vless://9eafd72d-c8c3-4692-8b23-c83e4c122616@45.192.196.224:8881?encryption=none&flow=xtls-rprx-vision&security=reality&sni=addons.mozilla.org&fp=chrome&pbk=CrJq0xAgqJqoNuRv2HC3TRQ__Ncr_2dvIWp1ChN7Q0Q&type=tcp&headerType=none#%F0%9F%87%AF%F0%9F%87%B5%20JPSB4%20xtls-reality
