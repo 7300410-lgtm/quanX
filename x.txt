@@ -5,10 +5,10 @@ vless=saas.sin.fan:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cb
 #美国
 
 #4837
-vless://2b3325bc-a7c4-41a7-9333-dee07257597a@saas.sin.fan:443?encryption=none&security=tls&sni=us4837isp.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=us4837isp.383941.xyz&path=%2F2b3325bc-a7c4-41a7-9333-dee07257597a-vless%3Fed%3D2560#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP%20电信
-vless://2b3325bc-a7c4-41a7-9333-dee07257597a@shopify.com:443?encryption=none&security=tls&sni=us4837isp.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=us4837isp.383941.xyz&path=%2F2b3325bc-a7c4-41a7-9333-dee07257597a-vless%3Fed%3D2560#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP%20移动
-hysteria2://2b3325bc-a7c4-41a7-9333-dee07257597a@38.175.222.16:8881?sni=addons.mozilla.org&insecure=0&allowInsecure=0#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP%20hysteria2
-anytls://2b3325bc-a7c4-41a7-9333-dee07257597a@38.175.222.16:8883?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP%20anytls
+vless://df9e06b6-cc24-4d9e-8220-5ba64014973f@saas.sin.fan:443?encryption=none&security=tls&sni=usisp.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=usisp.383941.xyz&path=%2Fdf9e06b6-cc24-4d9e-8220-5ba64014973f-vless%3Fed%3D2560#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP2-2026051023533959df3a%20vless-ws-tls
+hysteria2://df9e06b6-cc24-4d9e-8220-5ba64014973f@38.175.222.16:8881?sni=addons.mozilla.org&insecure=0&allowInsecure=0#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP2-2026051023533959df3a%20hysteria2
+anytls://df9e06b6-cc24-4d9e-8220-5ba64014973f@38.175.222.16:8883?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP2-2026051023533959df3a%20anytls
+
 
 
 #日本
