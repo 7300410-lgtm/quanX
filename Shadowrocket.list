@@ -2,6 +2,8 @@
 hysteria2://7ff09b9b-3438-4173-a22b-090ba6ee8062@38.175.222.200:8881?peer=addons.mozilla.org&hpkp=4B:B3:E8:C6:4D:33:D1:05:46:08:20:96:14:C9:CA:66:43:C2:CC:BC:1E:EF:60:4C:DB:82:7B:F4:16:2B:CD:5F&obfs=none&upmbps=1000&downmbps=1000&keepalive=30&mport=8881,50000-51000#🇺🇸%20LAX4837ISP%20hysteria2
 #vless://YXV0bzo3ZmYwOWI5Yi0zNDM4LTQxNzMtYTIyYi0wOTBiYTZlZTgwNjJAc2Fhcy5zaW4uZmFuOjQ0Mw==?remarks=🇺🇸%20LAX4837ISP%20vless-ws-tls&obfsParam=us4837isp.383941.xyz&path=/7ff09b9b-3438-4173-a22b-090ba6ee8062-vless?ed=2560&obfs=websocket&tls=1&peer=us4837isp.383941.xyz
 #anytls://7ff09b9b-3438-4173-a22b-090ba6ee8062@38.175.222.200:8883?peer=addons.mozilla.org&udp=1&hpkp=4B:B3:E8:C6:4D:33:D1:05:46:08:20:96:14:C9:CA:66:43:C2:CC:BC:1E:EF:60:4C:DB:82:7B:F4:16:2B:CD:5F#🇺🇸%20LAX4837ISP%20anytls
+#LAX4837V1
+hysteria2://6998a631-c69c-4d29-9ea9-1894d689bf4b@154.9.30.141:8881?peer=addons.mozilla.org&hpkp=58:1A:F2:A8:67:D1:7C:F2:BA:64:24:E7:B9:57:FA:13:EB:87:3E:0B:57:58:20:7D:05:EA:36:09:42:34:C9:34&obfs=none&upmbps=1000&downmbps=1000&keepalive=30&mport=8881,60000-61000#🇺🇸%20LAX4837V1%20hysteria2
 #HKCM
 hysteria2://2459ceff-d0d2-4f1a-b2db-b627185c7468@103.193.149.175:8881?peer=addons.mozilla.org&hpkp=55:70:C7:D8:1E:52:AF:B2:07:BA:DC:E8:34:74:45:F4:9A:1F:06:1D:CF:05:6F:95:A9:9E:03:F5:26:AF:87:DB&obfs=none&upmbps=1000&downmbps=1000&keepalive=30&mport=8881,60000-62000#🇭🇰%20HKCM%20hysteria2
 #anytls://2459ceff-d0d2-4f1a-b2db-b627185c7468@103.193.149.175:8882?peer=addons.mozilla.org&udp=1&hpkp=55:70:C7:D8:1E:52:AF:B2:07:BA:DC:E8:34:74:45:F4:9A:1F:06:1D:CF:05:6F:95:A9:9E:03:F5:26:AF:87:DB#🇭🇰%20HKCM%20anytls
