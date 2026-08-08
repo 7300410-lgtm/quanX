@@ -6,5 +6,7 @@ hysteria2://6998a631-c69c-4d29-9ea9-1894d689bf4b@154.9.30.141:8881?peer=addons.m
 hysteria2://6359bfef-c4f8-4797-b6a4-2370f6a5166e@45.192.202.229:8881?peer=addons.mozilla.org&hpkp=C5:C5:13:D1:81:DD:7F:25:05:F3:E3:1C:47:10:FC:4B:EA:A6:6A:23:4B:5D:41:2E:E1:84:E7:A7:45:13:1C:F8&obfs=none&upmbps=1000&downmbps=1000&keepalive=30&mport=8881,60000-61000#中转LAX4837V1%20hysteria2
 #HKCM
 hysteria2://2459ceff-d0d2-4f1a-b2db-b627185c7468@103.193.149.175:8881?peer=addons.mozilla.org&hpkp=55:70:C7:D8:1E:52:AF:B2:07:BA:DC:E8:34:74:45:F4:9A:1F:06:1D:CF:05:6F:95:A9:9E:03:F5:26:AF:87:DB&obfs=none&upmbps=1000&downmbps=1000&keepalive=30&mport=8881,60000-62000#🇭🇰%20HKCM%20hysteria2
+#NHKLite
+hysteria2://d346e83b-618f-4a33-8bba-8d4cb762b620@45.192.243.138:8881?peer=addons.mozilla.org&hpkp=14:D9:B5:8C:6C:DC:E2:6A:97:9F:18:13:82:1B:2C:E4:3F:C8:DC:1E:2B:1A:F1:51:6A:5D:9C:B2:F1:EA:35:AD&obfs=none&upmbps=1000&downmbps=1000&keepalive=30&mport=8881,40000-60000#🇯🇵%20NHK-Lite(中转）%20hysteria2
 #JPSB
 hysteria2://7ed1908d-69e8-477e-9191-1c5bd85b04f8@45.192.242.142:8881?peer=addons.mozilla.org&hpkp=89:E0:E9:0E:DD:60:D5:DE:DB:68:F5:D4:37:3A:FE:B3:37:57:8E:46:BF:70:30:A0:59:BF:70:94:F5:2B:F6:CD&obfs=none&upmbps=1000&downmbps=1000&keepalive=30&mport=8881,40000-60000#JPSB%20hysteria2
