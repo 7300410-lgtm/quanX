@@ -1,2 +1,6 @@
+#| DOMAIN,xxx | 精确匹配域名（必须完全一致） | emby.enjoyit.eu.org 只匹配它本身 |
+#| DOMAIN-SUFFIX,xxx | 后缀匹配域名及其所有子域 | emby.cjpc.cc 能匹配 emby.cjpc.cc、abc.emby.cjpc.cc 等 |
+#| DOMAIN-KEYWORD,xxx | 关键词匹配：域名里包含该关键词即命中 | jmsooo 匹配 agajp1.jmsooo.com 等所有带 jmsooo 的域名 |
+#| PROCESS-NAME,xxx | 按进程名匹配（客户端软件本身） | com.mb.android 是 Android 版 Emby 客户端包名 |
 DOMAIN-SUFFIX,emby.bangumi.ca
 DOMAIN-SUFFIX,us.wedg.top
