@@ -1,18 +1,5 @@
-#台湾
-vless=shopify.com:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cbc6, obfs=wss, obfs-host=twlite.383941.xyz, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇭🇰 TWL移动
-vless=saas.sin.fan:443, method=none, password=e9d52f23-8b35-4a78-9263-b47465b5cbc6, obfs=wss, obfs-host=twlite.383941.xyz, obfs-uri=/argox-vl?ed=2560, tls-verification=false, fast-open=false, udp-relay=false, tag=🇭🇰 TWL电信
-
-#美国
-
-#4837
-vless://df9e06b6-cc24-4d9e-8220-5ba64014973f@saas.sin.fan:443?encryption=none&security=tls&sni=usisp.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=usisp.383941.xyz&path=%2Fdf9e06b6-cc24-4d9e-8220-5ba64014973f-vless%3Fed%3D2560#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP2-2026051023533959df3a%20vless-ws-tls
-hysteria2://df9e06b6-cc24-4d9e-8220-5ba64014973f@38.175.222.16:8881?sni=addons.mozilla.org&insecure=0&allowInsecure=0#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP2-2026051023533959df3a%20hysteria2
-anytls://df9e06b6-cc24-4d9e-8220-5ba64014973f@38.175.222.16:8883?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%BA%F0%9F%87%B8%20LAX4837ISP2-2026051023533959df3a%20anytls
-
-
-
-#日本
-vless://b2e8c7e9-ff40-4bbf-885d-93f3d265c55a@saas.sin.fan:443?encryption=none&security=tls&sni=jpsb.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=jpsb.383941.xyz&path=%2Fb2e8c7e9-ff40-4bbf-885d-93f3d265c55a-vless%3Fed%3D2560#%F0%9F%87%AF%F0%9F%87%B5%20JPSB%20%E7%94%B5%E4%BF%A1
-vless://b2e8c7e9-ff40-4bbf-885d-93f3d265c55a@shopify.com:443?encryption=none&security=tls&sni=jpsb.383941.xyz&insecure=0&allowInsecure=0&type=ws&host=jpsb.383941.xyz&path=%2Fb2e8c7e9-ff40-4bbf-885d-93f3d265c55a-vless%3Fed%3D2560#%F0%9F%87%AF%F0%9F%87%B5%20JPSB%20%E7%A7%BB%E5%8A%A8
-anytls://b2e8c7e9-ff40-4bbf-885d-93f3d265c55a@45.192.200.224:8883?security=tls&sni=addons.mozilla.org&fp=chrome&insecure=0&allowInsecure=0&type=tcp&headerType=none#%F0%9F%87%AF%F0%9F%87%B5%20JPSB%20anytls
-hysteria2://b2e8c7e9-ff40-4bbf-885d-93f3d265c55a@45.192.200.224:8881?sni=addons.mozilla.org&insecure=0&allowInsecure=0#%F0%9F%87%AF%F0%9F%87%B5%20JPSB%20hysteria2
+#| DOMAIN,xxx | 精确匹配域名（必须完全一致） | emby.enjoyit.eu.org 只匹配它本身 |
+#| DOMAIN-SUFFIX,xxx | 后缀匹配域名及其所有子域 | emby.cjpc.cc 能匹配 emby.cjpc.cc、abc.emby.cjpc.cc 等 |
+#| DOMAIN-KEYWORD,xxx | 关键词匹配：域名里包含该关键词即命中 | jmsooo 匹配 agajp1.jmsooo.com 等所有带 jmsooo 的域名 |
+#| PROCESS-NAME,xxx | 按进程名匹配（客户端软件本身） | com.mb.android 是 Android 版 Emby 客户端包名 |
+DOMAIN,us.wedg.top
